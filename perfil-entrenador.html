@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitMarket - Perfil de Entrenador</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- Encabezado -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo-link">
+                    <div class="logo">FitMarket</div>
+                </a>
+                <nav class="nav">
+                    <a href="perfil-entrenador.html" class="nav-link active">Mi Perfil</a>
+                    <a href="servicios-entrenador.html" class="nav-link">Mis Servicios</a>
+                    <a href="estadisticas-entrenador.html" class="nav-link">Estadísticas</a>
+                    <a href="#" class="nav-link logout-link">Cerrar Sesión</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sección de Perfil -->
+    <section class="profile-section">
+        <div class="container">
+            <div class="profile-container">
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="profile-info">
+                        <h1>Bienvenido, <span id="nombre-usuario">Entrenador</span></h1>
+                        <p class="profile-email" id="email-usuario">email@ejemplo.com</p>
+                    </div>
+                </div>
+
+                <div class="profile-navigation">
+                    <div class="nav-item active">
+                        <i class="fas fa-user"></i>
+                        <span>Información Personal</span>
+                    </div>
+                    <a href="servicios-entrenador.html" class="nav-item">
+                        <i class="fas fa-dumbbell"></i>
+                        <span>Gestión de Servicios</span>
+                    </a>
+                    <div class="nav-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Horarios y Citas</span>
+                    </div>
+                    <a href="estadisticas-entrenador.html" class="nav-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Estadísticas</span>
+                    </a>
+                </div>
+
+                <div class="profile-content">
+                    <div class="quick-actions">
+                        <h2>Acciones Rápidas</h2>
+                        <div class="action-cards">
+                            <a href="servicios-entrenador.html" class="action-card">
+                                <div class="card-icon">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                                <div class="card-content">
+                                    <h3>Crear Nuevo Servicio</h3>
+                                    <p>Agrega un nuevo servicio a tu catálogo</p>
+                                </div>
+                            </a>
+                            <div class="action-card">
+                                <div class="card-icon">
+                                    <i class="fas fa-calendar-plus"></i>
+                                </div>
+                                <div class="card-content">
+                                    <h3>Gestionar Calendario</h3>
+                                    <p>Actualiza tu disponibilidad horaria</p>
+                                </div>
+                            </div>
+                            <div class="action-card">
+                                <div class="card-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="card-content">
+                                    <h3>Ver Clientes</h3>
+                                    <p>Administra tus clientes activos</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stats-summary">
+                        <h2>Resumen de Actividad</h2>
+                        <div class="stats-cards">
+                            <div class="stat-card">
+                                <div class="stat-number">5</div>
+                                <div class="stat-label">Servicios Activos</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">12</div>
+                                <div class="stat-label">Clientes Activos</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">28</div>
+                                <div class="stat-label">Sesiones Este Mes</div>
+                            </div>
+                        </div>
+                        <div class="view-stats-btn">
+                            <a href="estadisticas-entrenador.html" class="btn-primary">Ver Estadísticas Completas</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Comentar la validación de usuario
+            /*
+            const token = localStorage.getItem('auth_token');
+            const userName = localStorage.getItem('user_name');
+            const userRole = localStorage.getItem('user_role');
+            
+            // Si no hay token o el usuario no es entrenador, redirigir al login
+            if (!token || userRole !== 'trainer') {
+                window.location.href = 'login.html';
+                return;
+            }
+            */
+            
+            // Mostrar nombre de usuario genérico
+            const nombreUsuarioElement = document.getElementById('nombre-usuario');
+            if (nombreUsuarioElement) {
+                const userName = localStorage.getItem('user_name') || 'Entrenador Demo';
+                nombreUsuarioElement.textContent = userName;
+            }
+            
+            // Cerrar sesión (mantener la funcionalidad)
+            document.querySelector('.logout-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                localStorage.removeItem('auth_token');
+                localStorage.removeItem('user_name');
+                localStorage.removeItem('user_role');
+                window.location.href = 'login.html';
+            });
+        });
+    </script>
+</body>
+</html> 

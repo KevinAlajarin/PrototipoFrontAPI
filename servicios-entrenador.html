@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitMarket - Gestión de Servicios</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="servicios-entrenador.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- Encabezado -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo-link">
+                    <div class="logo">FitMarket</div>
+                </a>
+                <nav class="nav">
+                    <a href="perfil-entrenador.html" class="nav-link">Mi Perfil</a>
+                    <a href="servicios-entrenador.html" class="nav-link active">Mis Servicios</a>
+                    <a href="#" class="nav-link">Cerrar Sesión</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sección de Gestión de Servicios -->
+    <section class="servicios-section">
+        <div class="container">
+            <div class="servicios-header">
+                <h1>Gestión de Servicios</h1>
+                <button id="btn-nuevo-servicio" class="btn-primary">
+                    <i class="fas fa-plus"></i> Nuevo Servicio
+                </button>
+            </div>
+            
+            <!-- Filtros de servicios -->
+            <div class="servicios-filtros">
+                <div class="filtro-grupo">
+                    <label for="filtro-estado">Estado:</label>
+                    <select id="filtro-estado">
+                        <option value="todos">Todos</option>
+                        <option value="publicados">Publicados</option>
+                        <option value="ocultos">Ocultos</option>
+                    </select>
+                </div>
+                <div class="filtro-grupo">
+                    <label for="filtro-categoria">Categoría:</label>
+                    <select id="filtro-categoria">
+                        <option value="todas">Todas</option>
+                        <option value="running">Running</option>
+                        <option value="gimnasio">Gimnasio</option>
+                        <option value="nutricion">Nutrición</option>
+                        <option value="yoga">Yoga</option>
+                        <option value="pilates">Pilates</option>
+                    </select>
+                </div>
+                <div class="filtro-busqueda">
+                    <input type="text" placeholder="Buscar servicio..." id="buscar-servicio">
+                    <button class="btn-buscar"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+            
+            <!-- Lista de servicios -->
+            <div class="servicios-lista" id="servicios-container">
+                <!-- Los servicios se cargarán dinámicamente aquí -->
+                
+                <!-- Ejemplo de servicio (se generará dinámicamente) -->
+                <div class="servicio-card" data-id="1">
+                    <div class="servicio-header">
+                        <span class="servicio-categoria">Running</span>
+                        <div class="servicio-estado publicado">
+                            <span class="estado-dot"></span>
+                            <span class="estado-texto">Publicado</span>
+                        </div>
+                    </div>
+                    <h3 class="servicio-titulo">Entrenamiento para maratón</h3>
+                    <p class="servicio-descripcion">Plan de entrenamiento personalizado para preparación de maratones y medias maratones.</p>
+                    <div class="servicio-detalles">
+                        <div class="detalle">
+                            <i class="far fa-clock"></i>
+                            <span>60 minutos</span>
+                        </div>
+                        <div class="detalle">
+                            <i class="fas fa-dollar-sign"></i>
+                            <span>$5000 / sesión</span>
+                        </div>
+                    </div>
+                    <div class="servicio-acciones">
+                        <button class="btn-editar" data-id="1">
+                            <i class="fas fa-edit"></i> Editar
+                        </button>
+                        <button class="btn-despublicar" data-id="1">
+                            <i class="fas fa-eye-slash"></i> Despublicar
+                        </button>
+                        <button class="btn-eliminar" data-id="1">
+                            <i class="fas fa-trash"></i> Eliminar
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="servicio-card" data-id="2">
+                    <div class="servicio-header">
+                        <span class="servicio-categoria">Nutrición</span>
+                        <div class="servicio-estado oculto">
+                            <span class="estado-dot"></span>
+                            <span class="estado-texto">No publicado</span>
+                        </div>
+                    </div>
+                    <h3 class="servicio-titulo">Plan nutricional deportivo</h3>
+                    <p class="servicio-descripcion">Asesoramiento nutricional especializado para deportistas con objetivos específicos.</p>
+                    <div class="servicio-detalles">
+                        <div class="detalle">
+                            <i class="far fa-clock"></i>
+                            <span>45 minutos</span>
+                        </div>
+                        <div class="detalle">
+                            <i class="fas fa-dollar-sign"></i>
+                            <span>$4000 / sesión</span>
+                        </div>
+                    </div>
+                    <div class="servicio-acciones">
+                        <button class="btn-editar" data-id="2">
+                            <i class="fas fa-edit"></i> Editar
+                        </button>
+                        <button class="btn-publicar" data-id="2">
+                            <i class="fas fa-eye"></i> Publicar
+                        </button>
+                        <button class="btn-eliminar" data-id="2">
+                            <i class="fas fa-trash"></i> Eliminar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Modal para Crear/Editar Servicio -->
+    <div class="modal" id="modal-servicio">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-titulo">Nuevo Servicio</h2>
+                <button class="modal-cerrar">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="form-servicio">
+                    <input type="hidden" id="servicio-id">
+                    
+                    <div class="form-group">
+                        <label for="servicio-categoria">Categoría*</label>
+                        <select id="servicio-categoria" required>
+                            <option value="">Selecciona una categoría</option>
+                            <option value="running">Running</option>
+                            <option value="gimnasio">Gimnasio</option>
+                            <option value="nutricion">Nutrición</option>
+                            <option value="yoga">Yoga</option>
+                            <option value="pilates">Pilates</option>
+                        </select>
+                        <span class="form-error" id="categoria-error"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="servicio-titulo">Título*</label>
+                        <input type="text" id="servicio-titulo" placeholder="Título del servicio" required>
+                        <span class="form-error" id="titulo-error"></span>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group half">
+                            <label for="servicio-duracion">Duración*</label>
+                            <select id="servicio-duracion" required>
+                                <option value="">Selecciona la duración</option>
+                                <option value="30">30 minutos</option>
+                                <option value="45">45 minutos</option>
+                                <option value="60">60 minutos</option>
+                                <option value="90">90 minutos</option>
+                            </select>
+                            <span class="form-error" id="duracion-error"></span>
+                        </div>
+                        
+                        <div class="form-group half">
+                            <label for="servicio-precio">Precio por sesión ($)*</label>
+                            <input type="number" id="servicio-precio" min="500" step="100" placeholder="2000" required>
+                            <span class="form-error" id="precio-error"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button type="button" class="btn-secundario" id="btn-cancelar">Cancelar</button>
+                        <button type="submit" class="btn-primary" id="btn-guardar">Guardar Servicio</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal de confirmación -->
+    <div class="modal" id="modal-confirmacion">
+        <div class="modal-content modal-small">
+            <div class="modal-header">
+                <h2>Confirmar acción</h2>
+                <button class="modal-cerrar">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="mensaje-confirmacion">¿Estás seguro de que deseas eliminar este servicio?</p>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn-secundario" id="btn-cancelar-confirmacion">Cancelar</button>
+                    <button type="button" class="btn-danger" id="btn-confirmar">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Eliminar validación de usuario
+            /* 
+            const token = localStorage.getItem('auth_token');
+            const userRole = localStorage.getItem('user_role');
+            
+            // Si no hay token o el usuario no es entrenador, redirigir al login
+            if (!token || userRole !== 'trainer') {
+                alert('Debes iniciar sesión como entrenador para acceder a esta página');
+                window.location.href = 'login.html';
+                return;
+            }
+            */
+            
+            // Elementos del DOM
+            const btnNuevoServicio = document.getElementById('btn-nuevo-servicio');
+            const modalServicio = document.getElementById('modal-servicio');
+            const modalConfirmacion = document.getElementById('modal-confirmacion');
+            const btnCerrarModal = document.querySelectorAll('.modal-cerrar');
+            const btnCancelar = document.getElementById('btn-cancelar');
+            const btnCancelarConfirmacion = document.getElementById('btn-cancelar-confirmacion');
+            const formServicio = document.getElementById('form-servicio');
+            const filtroEstado = document.getElementById('filtro-estado');
+            const filtroCategoria = document.getElementById('filtro-categoria');
+            const buscarServicio = document.getElementById('buscar-servicio');
+            
+            // Base de datos simulada de servicios
+            let servicios = [
+                {
+                    id: 1,
+                    categoria: 'Running',
+                    titulo: 'Entrenamiento para maratón',
+                    descripcion: 'Plan de entrenamiento personalizado para preparación de maratones y medias maratones.',
+                    duracion: 60,
+                    precio: 5000,
+                    publicado: true
+                },
+                {
+                    id: 2,
+                    categoria: 'Nutrición',
+                    titulo: 'Plan nutricional deportivo',
+                    descripcion: 'Asesoramiento nutricional especializado para deportistas con objetivos específicos.',
+                    duracion: 45,
+                    precio: 4000,
+                    publicado: false
+                }
+            ];
+            
+            // Abrir modal para nuevo servicio
+            btnNuevoServicio.addEventListener('click', function() {
+                resetearFormulario();
+                document.getElementById('modal-titulo').textContent = 'Nuevo Servicio';
+                modalServicio.classList.add('show');
+            });
+            
+            // Cerrar modales
+            btnCerrarModal.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    modalServicio.classList.remove('show');
+                    modalConfirmacion.classList.remove('show');
+                });
+            });
+            
+            // Botón cancelar del modal de servicio
+            btnCancelar.addEventListener('click', function() {
+                modalServicio.classList.remove('show');
+            });
+            
+            // Botón cancelar del modal de confirmación
+            btnCancelarConfirmacion.addEventListener('click', function() {
+                modalConfirmacion.classList.remove('show');
+            });
+            
+            // Evento para editar servicio
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.btn-editar')) {
+                    const servicioId = e.target.closest('.btn-editar').getAttribute('data-id');
+                    editarServicio(servicioId);
+                }
+            });
+            
+            // Evento para publicar/despublicar servicio
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.btn-publicar') || e.target.closest('.btn-despublicar')) {
+                    const btn = e.target.closest('.btn-publicar') || e.target.closest('.btn-despublicar');
+                    const servicioId = btn.getAttribute('data-id');
+                    togglePublicarServicio(servicioId);
+                }
+            });
+            
+            // Evento para eliminar servicio
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.btn-eliminar')) {
+                    const servicioId = e.target.closest('.btn-eliminar').getAttribute('data-id');
+                    confirmarEliminarServicio(servicioId);
+                }
+            });
+            
+            // Guardar servicio (nuevo o editado)
+            formServicio.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                if (validarFormulario()) {
+                    guardarServicio();
+                    modalServicio.classList.remove('show');
+                }
+            });
+            
+            // Filtrar servicios
+            filtroEstado.addEventListener('change', filtrarServicios);
+            filtroCategoria.addEventListener('change', filtrarServicios);
+            buscarServicio.addEventListener('input', filtrarServicios);
+            
+            // Función para resetear el formulario
+            function resetearFormulario() {
+                formServicio.reset();
+                document.getElementById('servicio-id').value = '';
+                document.querySelectorAll('.form-error').forEach(error => {
+                    error.textContent = '';
+                });
+            }
+            
+            // Función para editar un servicio
+            function editarServicio(id) {
+                const servicio = servicios.find(s => s.id == id);
+                if (servicio) {
+                    document.getElementById('modal-titulo').textContent = 'Editar Servicio';
+                    document.getElementById('servicio-id').value = servicio.id;
+                    document.getElementById('servicio-categoria').value = servicio.categoria.toLowerCase();
+                    document.getElementById('servicio-titulo').value = servicio.titulo;
+                    document.getElementById('servicio-duracion').value = servicio.duracion;
+                    document.getElementById('servicio-precio').value = servicio.precio;
+                    
+                    modalServicio.classList.add('show');
+                }
+            }
+            
+            // Función para cambiar el estado de publicación
+            function togglePublicarServicio(id) {
+                const servicio = servicios.find(s => s.id == id);
+                if (servicio) {
+                    servicio.publicado = !servicio.publicado;
+                    actualizarListaServicios();
+                }
+            }
+            
+            // Función para confirmar eliminación
+            function confirmarEliminarServicio(id) {
+                const servicio = servicios.find(s => s.id == id);
+                if (servicio) {
+                    document.getElementById('mensaje-confirmacion').textContent = 
+                        `¿Estás seguro de que deseas eliminar el servicio "${servicio.titulo}"?`;
+                    
+                    const btnConfirmar = document.getElementById('btn-confirmar');
+                    btnConfirmar.setAttribute('data-id', id);
+                    
+                    btnConfirmar.onclick = function() {
+                        const idEliminar = this.getAttribute('data-id');
+                        eliminarServicio(idEliminar);
+                        modalConfirmacion.classList.remove('show');
+                    };
+                    
+                    modalConfirmacion.classList.add('show');
+                }
+            }
+            
+            // Función para eliminar servicio
+            function eliminarServicio(id) {
+                servicios = servicios.filter(s => s.id != id);
+                actualizarListaServicios();
+            }
+            
+            // Función para validar el formulario
+            function validarFormulario() {
+                let esValido = true;
+                
+                // Validar categoría
+                const categoria = document.getElementById('servicio-categoria').value;
+                if (!categoria) {
+                    document.getElementById('categoria-error').textContent = 'Debes seleccionar una categoría';
+                    esValido = false;
+                } else {
+                    document.getElementById('categoria-error').textContent = '';
+                }
+                
+                // Validar título
+                const titulo = document.getElementById('servicio-titulo').value;
+                if (!titulo) {
+                    document.getElementById('titulo-error').textContent = 'Debes ingresar un título';
+                    esValido = false;
+                } else {
+                    document.getElementById('titulo-error').textContent = '';
+                }
+                
+                // Validar duración
+                const duracion = document.getElementById('servicio-duracion').value;
+                if (!duracion) {
+                    document.getElementById('duracion-error').textContent = 'Debes seleccionar una duración';
+                    esValido = false;
+                } else {
+                    document.getElementById('duracion-error').textContent = '';
+                }
+                
+                // Validar precio
+                const precio = document.getElementById('servicio-precio').value;
+                if (!precio || precio < 500) {
+                    document.getElementById('precio-error').textContent = 'El precio debe ser al menos $500';
+                    esValido = false;
+                } else {
+                    document.getElementById('precio-error').textContent = '';
+                }
+                
+                return esValido;
+            }
+            
+            // Función para guardar un servicio
+            function guardarServicio() {
+                const servicioId = document.getElementById('servicio-id').value;
+                const categoria = document.getElementById('servicio-categoria').value;
+                const titulo = document.getElementById('servicio-titulo').value;
+                const duracion = document.getElementById('servicio-duracion').value;
+                const precio = document.getElementById('servicio-precio').value;
+                
+                const nuevoServicio = {
+                    categoria: categoria.charAt(0).toUpperCase() + categoria.slice(1),
+                    titulo: titulo,
+                    descripcion: `Servicio de ${categoria}`,
+                    duracion: parseInt(duracion),
+                    precio: parseInt(precio),
+                    publicado: true
+                };
+                
+                if (servicioId) {
+                    // Editar servicio existente
+                    const index = servicios.findIndex(s => s.id == servicioId);
+                    if (index !== -1) {
+                        const publicado = servicios[index].publicado;
+                        nuevoServicio.id = parseInt(servicioId);
+                        nuevoServicio.publicado = publicado;
+                        servicios[index] = nuevoServicio;
+                    }
+                } else {
+                    // Crear nuevo servicio
+                    nuevoServicio.id = servicios.length > 0 ? Math.max(...servicios.map(s => s.id)) + 1 : 1;
+                    servicios.push(nuevoServicio);
+                }
+                
+                actualizarListaServicios();
+                resetearFormulario();
+            }
+            
+            // Función para actualizar la lista de servicios
+            function actualizarListaServicios() {
+                const serviciosContainer = document.getElementById('servicios-container');
+                serviciosContainer.innerHTML = '';
+                
+                // Obtener filtros
+                const estadoFiltro = filtroEstado.value;
+                const categoriaFiltro = filtroCategoria.value;
+                const busqueda = buscarServicio.value.toLowerCase();
+                
+                // Aplicar filtros
+                let serviciosFiltrados = [...servicios];
+                
+                if (estadoFiltro === 'publicados') {
+                    serviciosFiltrados = serviciosFiltrados.filter(s => s.publicado);
+                } else if (estadoFiltro === 'ocultos') {
+                    serviciosFiltrados = serviciosFiltrados.filter(s => !s.publicado);
+                }
+                
+                if (categoriaFiltro !== 'todas') {
+                    serviciosFiltrados = serviciosFiltrados.filter(s => 
+                        s.categoria.toLowerCase() === categoriaFiltro
+                    );
+                }
+                
+                if (busqueda) {
+                    serviciosFiltrados = serviciosFiltrados.filter(s => 
+                        s.titulo.toLowerCase().includes(busqueda) || 
+                        s.descripcion.toLowerCase().includes(busqueda)
+                    );
+                }
+                
+                if (serviciosFiltrados.length === 0) {
+                    serviciosContainer.innerHTML = `
+                        <div class="no-resultados">
+                            <i class="far fa-frown"></i>
+                            <p>No se encontraron servicios</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                // Renderizar servicios filtrados
+                serviciosFiltrados.forEach(servicio => {
+                    const servicioCard = document.createElement('div');
+                    servicioCard.className = 'servicio-card';
+                    servicioCard.setAttribute('data-id', servicio.id);
+                    
+                    servicioCard.innerHTML = renderizarServicio(servicio);
+                    
+                    serviciosContainer.appendChild(servicioCard);
+                });
+            }
+            
+            // Función para renderizar un servicio
+            function renderizarServicio(servicio) {
+                const servicioHTML = `
+                    <div class="servicio-card" data-id="${servicio.id}">
+                        <div class="servicio-header">
+                            <span class="servicio-categoria">${servicio.categoria}</span>
+                            <div class="servicio-estado ${servicio.publicado ? 'publicado' : 'oculto'}">
+                                <span class="estado-dot"></span>
+                                <span class="estado-texto">${servicio.publicado ? 'Publicado' : 'No publicado'}</span>
+                            </div>
+                        </div>
+                        <h3 class="servicio-titulo">${servicio.titulo}</h3>
+                        <p class="servicio-descripcion">${servicio.descripcion}</p>
+                        <div class="servicio-detalles">
+                            <div class="detalle">
+                                <i class="far fa-clock"></i>
+                                <span>${servicio.duracion} minutos</span>
+                            </div>
+                            <div class="detalle">
+                                <i class="fas fa-dollar-sign"></i>
+                                <span>$${servicio.precio} / sesión</span>
+                            </div>
+                        </div>
+                        <div class="servicio-acciones">
+                            <button class="btn-editar" data-id="${servicio.id}">
+                                <i class="fas fa-edit"></i> Editar
+                            </button>
+                            ${servicio.publicado ? 
+                                `<button class="btn-despublicar" data-id="${servicio.id}">
+                                    <i class="fas fa-eye-slash"></i> Despublicar
+                                </button>` : 
+                                `<button class="btn-publicar" data-id="${servicio.id}">
+                                    <i class="fas fa-eye"></i> Publicar
+                                </button>`
+                            }
+                            <button class="btn-eliminar" data-id="${servicio.id}">
+                                <i class="fas fa-trash"></i> Eliminar
+                            </button>
+                        </div>
+                    </div>
+                `;
+                return servicioHTML;
+            }
+            
+            // Función para filtrar los servicios
+            function filtrarServicios() {
+                actualizarListaServicios();
+            }
+            
+            // Inicializar la lista de servicios
+            actualizarListaServicios();
+        });
+    </script>
+</body>
+</html> 

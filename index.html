@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitMarket - Encuentra tu entrenador</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- Encabezado -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo-link">
+                    <div class="logo">FitMarket</div>
+                </a>
+                <nav class="nav">
+                    <a href="index.html" class="nav-link active">Inicio</a>
+                    <a href="login.html" class="nav-link">Ingresar</a>
+                    <a href="registro.html" class="nav-link">Registrarse</a>
+                    <a href="servicios-entrenador.html" class="nav-link">Gestión de Servicios</a>
+                    <a href="comentarios-entrenadores.html" class="nav-link">Comentarios</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sección de Búsqueda -->
+    <section class="search-section">
+        <div class="container">
+            <h1>Encuentra tu entrenador ideal</h1>
+            
+            <div class="filter-container">
+                <!-- Filtros con botones -->
+                <div class="filters-panel visible">
+                    <div class="filter-section">
+                        <h3 class="filter-title">Categoría</h3>
+                        <div class="filter-buttons">
+                            <button type="button" class="filter-btn" data-filter="categoria" data-value="entrenamiento-maraton">Entrenamiento para maratón</button>
+                            <button type="button" class="filter-btn" data-filter="categoria" data-value="nutricion-deportiva">Nutrición deportiva</button>
+                            <button type="button" class="filter-btn" data-filter="categoria" data-value="entrenamiento-funcional">Entrenamiento funcional</button>
+                            <button type="button" class="filter-btn" data-filter="categoria" data-value="yoga">Yoga</button>
+                            <button type="button" class="filter-btn" data-filter="categoria" data-value="pilates">Pilates</button>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-section">
+                        <h3 class="filter-title">Idioma</h3>
+                        <div class="filter-buttons">
+                            <button type="button" class="filter-btn" data-filter="idioma" data-value="espanol">Español</button>
+                            <button type="button" class="filter-btn" data-filter="idioma" data-value="ingles">Inglés</button>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-section">
+                        <h3 class="filter-title">Modalidad</h3>
+                        <div class="filter-buttons">
+                            <button type="button" class="filter-btn" data-filter="modalidad" data-value="presencial">Presencial</button>
+                            <button type="button" class="filter-btn" data-filter="modalidad" data-value="virtual">Virtual</button>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-section">
+                        <h3 class="filter-title">Zona</h3>
+                        <div class="filter-buttons">
+                            <button type="button" class="filter-btn" data-filter="zona" data-value="palermo">Palermo</button>
+                            <button type="button" class="filter-btn" data-filter="zona" data-value="recoleta">Recoleta</button>
+                            <button type="button" class="filter-btn" data-filter="zona" data-value="belgrano">Belgrano</button>
+                            <button type="button" class="filter-btn" data-filter="zona" data-value="caballito">Caballito</button>
+                            <button type="button" class="filter-btn" data-filter="zona" data-value="sanTelmo">San Telmo</button>
+                            <button type="button" class="filter-btn" data-filter="zona" data-value="laBoca">La Boca</button>
+                            <button type="button" class="filter-btn" data-filter="zona" data-value="puertoMadero">Puerto Madero</button>
+                            <button type="button" class="filter-btn" data-filter="zona" data-value="flores">Flores</button>
+                            <button type="button" class="filter-btn" data-filter="zona" data-value="villaCrespo">Villa Crespo</button>
+                            <button type="button" class="filter-btn" data-filter="zona" data-value="nuniez">Nuñez</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Opciones de ordenamiento -->
+                    <div class="sort-section">
+                        <h3 class="filter-title">Ordenar por</h3>
+                        <div class="sort-options">
+                            <div class="sort-group">
+                                <label for="ordenPrecio">Precio</label>
+                                <select id="ordenPrecio" name="ordenPrecio" class="sort-select">
+                                    <option value="">Sin ordenar</option>
+                                    <option value="asc">Menor precio primero</option>
+                                    <option value="desc">Mayor precio primero</option>
+                                </select>
+                            </div>
+                            
+                            <div class="sort-group">
+                                <label for="ordenDuracion">Duración</label>
+                                <select id="ordenDuracion" name="ordenDuracion" class="sort-select">
+                                    <option value="">Sin ordenar</option>
+                                    <option value="asc">Menor duración primero</option>
+                                    <option value="desc">Mayor duración primero</option>
+                                </select>
+                            </div>
+                            
+                            <div class="sort-group">
+                                <label for="ordenCalificacion">Calificación</label>
+                                <select id="ordenCalificacion" name="ordenCalificacion" class="sort-select">
+                                    <option value="">Sin ordenar</option>
+                                    <option value="desc">Mejor calificación primero</option>
+                                    <option value="asc">Peor calificación primero</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-action-buttons">
+                        <button type="button" class="btn-filter btn-clear">Limpiar filtros</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Listado de Entrenadores -->
+    <main class="trainers-list">
+        <div class="container">
+            <div class="trainer-card">
+                <div class="trainer-header">
+                    <h3>Carlos Pérez</h3>
+                    <div class="rating">⭐ 4.5 (78)</div>
+                </div>
+                <p class="category">Entrenamiento para maratón</p>
+                <p class="description">Entrenamiento personalizado para preparación de carreras, desde 5K hasta maratones completas.</p>
+                <div class="price">$3500/sesión</div>
+                <div class="badges">
+                    <span class="badge virtual">Virtual</span>
+                    <span class="badge presencial">Palermo</span>
+                    <span class="badge idioma">Español</span>
+                </div>
+                <div class="reviews">
+                    <h4>Comentarios</h4>
+                    <div class="review-item">
+                        <div class="review-header">
+                            <span class="reviewer">María García</span>
+                            <span class="review-rating">⭐⭐⭐⭐⭐</span>
+                        </div>
+                        <p>Excelente entrenamiento. Me gustó mucho la planificación personalizada y el seguimiento constante.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Otro ejemplo de entrenador -->
+            <div class="trainer-card">
+                <div class="trainer-header">
+                    <h3>Ana Rodríguez</h3>
+                    <div class="rating">⭐ 5.0 (32)</div>
+                </div>
+                <p class="category">Nutrición deportiva</p>
+                <p class="description">Planes de alimentación personalizados para deportistas, optimización de rendimiento y recuperación.</p>
+                <div class="price">$2800/consulta</div>
+                <div class="badges">
+                    <span class="badge virtual">Virtual</span>
+                    <span class="badge presencial">Belgrano</span>
+                    <span class="badge idioma">Español, Inglés</span>
+                </div>
+                <div class="reviews">
+                    <h4>Comentarios</h4>
+                    <div class="review-item">
+                        <div class="review-header">
+                            <span class="reviewer">Carlos Sánchez</span>
+                            <span class="review-rating">⭐⭐⭐⭐</span>
+                        </div>
+                        <p>El plan nutricional ha sido muy efectivo para mi rendimiento deportivo. Me gustaría que hubiera más opciones para intolerantes a la lactosa.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tercer entrenador -->
+            <div class="trainer-card">
+                <div class="trainer-header">
+                    <h3>Diego Martínez</h3>
+                    <div class="rating">⭐ 4.0 (15)</div>
+                </div>
+                <p class="category">Entrenamiento funcional</p>
+                <p class="description">Sesiones de alta intensidad para mejorar fuerza, resistencia y movilidad con ejercicios funcionales.</p>
+                <div class="price">$2500/sesión</div>
+                <div class="badges">
+                    <span class="badge presencial">Villa Crespo</span>
+                    <span class="badge idioma">Español</span>
+                </div>
+                <div class="reviews">
+                    <h4>Comentarios</h4>
+                    <div class="review-item">
+                        <div class="review-header">
+                            <span class="reviewer">Laura Martínez</span>
+                            <span class="review-rating">⭐⭐</span>
+                        </div>
+                        <p>La sesión fue demasiado intensa para mi nivel. Sentí que no se adaptó bien a mis necesidades como principiante.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cuarto entrenador -->
+            <div class="trainer-card">
+                <div class="trainer-header">
+                    <h3>Laura González</h3>
+                    <div class="rating">⭐ 4.9 (85)</div>
+                </div>
+                <p class="category">Yoga</p>
+                <p class="description">Clases personalizadas para todos los niveles, enfoque en flexibilidad, equilibrio y relajación mental.</p>
+                <div class="price">$2200/sesión</div>
+                <div class="badges">
+                    <span class="badge virtual">Virtual</span>
+                    <span class="badge presencial">Palermo</span>
+                    <span class="badge idioma">Español, Inglés</span>
+                </div>
+                <div class="reviews">
+                    <h4>Comentarios</h4>
+                    <div class="review-item">
+                        <div class="review-header">
+                            <span class="reviewer">Ana P.</span>
+                            <span class="review-rating">⭐⭐⭐⭐⭐</span>
+                        </div>
+                        <p>Laura es una excelente instructora. Sus clases me han ayudado mucho con mi dolor de espalda.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quinto entrenador -->
+            <div class="trainer-card">
+                <div class="trainer-header">
+                    <h3>Martín Suárez</h3>
+                    <div class="rating">⭐ 4.7 (62)</div>
+                </div>
+                <p class="category">Pilates</p>
+                <p class="description">Sesiones enfocadas en fortalecer el core, mejorar la postura y aumentar la flexibilidad con ejercicios controlados.</p>
+                <div class="price">$2400/sesión</div>
+                <div class="badges">
+                    <span class="badge presencial">Recoleta</span>
+                    <span class="badge idioma">Español</span>
+                </div>
+                <div class="reviews">
+                    <h4>Comentarios</h4>
+                    <div class="review-item">
+                        <div class="review-header">
+                            <span class="reviewer">Julia M.</span>
+                            <span class="review-rating">⭐⭐⭐⭐⭐</span>
+                        </div>
+                        <p>Las clases de Martín son excelentes. He notado una gran mejora en mi postura y flexibilidad desde que comencé.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Sección de Funcionalidades -->
+    <section class="features-section">
+        <div class="container">
+            <h2 class="section-title">Nuestras Funcionalidades</h2>
+            
+            <div class="features-container">
+                <div class="features-group">
+                    <h3>Para Clientes</h3>
+                    <div class="features-cards">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h4>Encuentra tu Entrenador</h4>
+                            <p>Busca entrenadores según tus necesidades, filtra por categoría, idioma, modalidad y ubicación.</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-user-check"></i>
+                            </div>
+                            <h4>Registro Sencillo</h4>
+                            <p>Crea tu cuenta con validación de campos y opciones para ingresar con Google o Facebook.</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <h4>Califica y Comenta</h4>
+                            <p>Comparte tu experiencia con los entrenadores, ayudando a otros usuarios a elegir mejor.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="features-group">
+                    <h3>Para Entrenadores</h3>
+                    <div class="features-cards">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-dumbbell"></i>
+                            </div>
+                            <h4>Gestión de Servicios</h4>
+                            <p>Crea, modifica y gestiona tus servicios de entrenamiento personalizado fácilmente.</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <h4>Responde Comentarios</h4>
+                            <p>Interactúa con tus clientes respondiendo a sus comentarios y opiniones sobre tus servicios.</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h4>Estadísticas Detalladas</h4>
+                            <p>Visualiza métricas clave como visualizaciones, tasas de conversión y calificaciones de tus servicios.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="features-cta">
+                <h3>¿Listo para comenzar?</h3>
+                <div class="cta-buttons">
+                    <a href="registro.html" class="btn-primary">Registrarse</a>
+                    <a href="login.html" class="btn-secondary">Iniciar Sesión</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // JavaScript para el funcionamiento de los filtros
+        document.addEventListener('DOMContentLoaded', function() {
+            // Estado de los filtros
+            const filtrosActivos = {
+                categoria: null,
+                idioma: null,
+                modalidad: null,
+                zona: [], // Ahora es un array para permitir múltiples selecciones
+                ordenPrecio: null,
+                ordenDuracion: null,
+                ordenCalificacion: null
+            };
+            
+            // Obtener todos los botones de filtro
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const sortSelects = document.querySelectorAll('.sort-select');
+            const clearFilterBtn = document.querySelector('.btn-clear');
+            
+            // Máximo número de zonas seleccionables
+            const MAX_ZONAS = 3;
+            
+            // Agregar evento a todos los botones de filtro
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const filterType = this.dataset.filter;
+                    const filterValue = this.dataset.value;
+                    
+                    // Manejo especial para zona (selección múltiple hasta 3)
+                    if (filterType === 'zona') {
+                        if (this.classList.contains('active')) {
+                            // Si ya está activo, quitarlo de la selección
+                            this.classList.remove('active');
+                            filtrosActivos.zona = filtrosActivos.zona.filter(z => z !== filterValue);
+                        } else {
+                            // Si no está activo y no hemos alcanzado el máximo, añadirlo
+                            if (filtrosActivos.zona.length < MAX_ZONAS) {
+                                this.classList.add('active');
+                                filtrosActivos.zona.push(filterValue);
+                            } else {
+                                // Si ya tenemos el máximo, mostrar una alerta
+                                alert('Solo puedes seleccionar hasta 3 zonas');
+                            }
+                        }
+                    } else {
+                        // Para el resto de filtros, comportamiento estándar (selección única)
+                        if (this.classList.contains('active')) {
+                            this.classList.remove('active');
+                            filtrosActivos[filterType] = null;
+                        } else {
+                            // Desactivar otros botones del mismo tipo
+                            document.querySelectorAll(`.filter-btn[data-filter="${filterType}"]`).forEach(btn => {
+                                btn.classList.remove('active');
+                            });
+                            
+                            // Activar este botón
+                            this.classList.add('active');
+                            filtrosActivos[filterType] = filterValue;
+                        }
+                    }
+                    
+                    // Aplicar filtros inmediatamente
+                    aplicarFiltros();
+                });
+            });
+            
+            // Agregar evento a los selectores de ordenamiento
+            sortSelects.forEach(select => {
+                select.addEventListener('change', function() {
+                    filtrosActivos[this.id] = this.value;
+                    aplicarFiltros();
+                });
+            });
+            
+            // Limpiar filtros
+            clearFilterBtn.addEventListener('click', function() {
+                // Limpiar estado de filtros
+                Object.keys(filtrosActivos).forEach(key => {
+                    if (key === 'zona') {
+                        filtrosActivos[key] = []; // Para zona, inicializar como array vacío
+                    } else {
+                        filtrosActivos[key] = null;
+                    }
+                });
+                
+                // Desactivar todos los botones
+                filterButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Resetear los selectores
+                sortSelects.forEach(select => {
+                    select.value = '';
+                });
+                
+                // Aplicar filtros (mostrar todos)
+                aplicarFiltros();
+            });
+            
+            // Función para aplicar los filtros
+            function aplicarFiltros() {
+                console.log('Filtros aplicados:', filtrosActivos);
+                
+                // Aquí iría el código para filtrar los resultados según filtrosActivos
+                // Por ejemplo, ocultar/mostrar las tarjetas según los criterios
+                
+                // Este es un ejemplo simple, en una aplicación real
+                // probablemente harías una llamada AJAX para obtener resultados filtrados
+            }
+        });
+    </script>
+</body>
+</html> 

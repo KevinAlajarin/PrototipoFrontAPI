@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitMarket - Comentarios y Valoraciones</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="comentarios-entrenadores.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- Encabezado -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo-link">
+                    <div class="logo">FitMarket</div>
+                </a>
+                <nav class="nav">
+                    <a href="index.html" class="nav-link">Inicio</a>
+                    <a href="login.html" class="nav-link">Ingresar</a>
+                    <a href="registro.html" class="nav-link">Registrarse</a>
+                    <a href="comentarios-entrenadores.html" class="nav-link active">Comentarios</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sección de Comentarios y Valoraciones -->
+    <section class="comentarios-section">
+        <div class="container">
+            <div class="comentarios-header">
+                <h1>Comentarios y Valoraciones</h1>
+                <p class="subtitle">Valora y comenta tus sesiones con entrenadores</p>
+            </div>
+            
+            <!-- Filtros -->
+            <div class="filtros-container">
+                <div class="filtro-grupo">
+                    <label for="filtro-entrenador">Entrenador:</label>
+                    <select id="filtro-entrenador">
+                        <option value="todos">Todos los entrenadores</option>
+                        <option value="1">Carlos Rodríguez</option>
+                        <option value="2">Laura Méndez</option>
+                        <option value="3">Javier Torres</option>
+                    </select>
+                </div>
+                <div class="filtro-grupo">
+                    <label for="filtro-rating">Calificación:</label>
+                    <select id="filtro-rating">
+                        <option value="todos">Todas</option>
+                        <option value="5">5 estrellas</option>
+                        <option value="4">4 estrellas o más</option>
+                        <option value="3">3 estrellas o más</option>
+                    </select>
+                </div>
+                <div class="filtro-busqueda">
+                    <input type="text" id="buscar-comentarios" placeholder="Buscar en comentarios...">
+                    <button class="btn-buscar"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+            
+            <!-- Sección de mis sesiones para comentar -->
+            <div class="mis-sesiones">
+                <h2>Mis Sesiones Recientes</h2>
+                <p class="info-text">Estas son las sesiones que has tenido recientemente y que puedes valorar</p>
+                
+                <div class="sesiones-container">
+                    <!-- Ejemplo de sesión pendiente de valorar -->
+                    <div class="sesion-card" data-id="101">
+                        <div class="sesion-header">
+                            <div class="entrenador-info">
+                                <div class="entrenador-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="entrenador-detalles">
+                                    <h3 class="entrenador-nombre">Carlos Rodríguez</h3>
+                                    <span class="servicio-nombre">Entrenamiento para maratón</span>
+                                </div>
+                            </div>
+                            <div class="sesion-fecha">
+                                <i class="far fa-calendar-alt"></i>
+                                <span>12 de octubre, 2023</span>
+                            </div>
+                        </div>
+                        <div class="sesion-detalles">
+                            <div class="detalle">
+                                <i class="far fa-clock"></i>
+                                <span>60 minutos</span>
+                            </div>
+                            <div class="detalle">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Videoconferencia</span>
+                            </div>
+                        </div>
+                        <div class="valoracion-pendiente">
+                            <p>¿Cómo fue tu experiencia con este entrenador?</p>
+                            <button class="btn-valorar" data-id="101" data-entrenador="Carlos Rodríguez" data-servicio="Entrenamiento para maratón">
+                                <i class="fas fa-star"></i> Valorar sesión
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Ejemplo de otra sesión pendiente -->
+                    <div class="sesion-card" data-id="102">
+                        <div class="sesion-header">
+                            <div class="entrenador-info">
+                                <div class="entrenador-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="entrenador-detalles">
+                                    <h3 class="entrenador-nombre">Laura Méndez</h3>
+                                    <span class="servicio-nombre">Nutrición deportiva</span>
+                                </div>
+                            </div>
+                            <div class="sesion-fecha">
+                                <i class="far fa-calendar-alt"></i>
+                                <span>15 de octubre, 2023</span>
+                            </div>
+                        </div>
+                        <div class="sesion-detalles">
+                            <div class="detalle">
+                                <i class="far fa-clock"></i>
+                                <span>45 minutos</span>
+                            </div>
+                            <div class="detalle">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Centro deportivo</span>
+                            </div>
+                        </div>
+                        <div class="valoracion-pendiente">
+                            <p>¿Cómo fue tu experiencia con este entrenador?</p>
+                            <button class="btn-valorar" data-id="102" data-entrenador="Laura Méndez" data-servicio="Nutrición deportiva">
+                                <i class="fas fa-star"></i> Valorar sesión
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Comentarios y valoraciones -->
+            <div class="comentarios-container">
+                <h2>Valoraciones y Comentarios</h2>
+                <div class="comentarios-list" id="comentarios-list">
+                    <!-- Se cargarán dinámicamente -->
+                    
+                    <!-- Ejemplo de comentario -->
+                    <div class="comentario-card">
+                        <div class="comentario-header">
+                            <div class="usuario-info">
+                                <div class="usuario-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="usuario-nombre">
+                                    <span>María García</span>
+                                    <span class="fecha-comentario">18 de septiembre, 2023</span>
+                                </div>
+                            </div>
+                            <div class="entrenador-comentado">
+                                <span>Sobre:</span>
+                                <strong>Javier Torres</strong>
+                                <span class="servicio-comentado">Entrenamiento de fuerza</span>
+                            </div>
+                        </div>
+                        
+                        <div class="valoracion">
+                            <div class="estrellas">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="rating-numero">4.0</span>
+                        </div>
+                        
+                        <div class="comentario-texto">
+                            <p>Excelente profesional, muy atento a la técnica y con mucha paciencia para explicar los ejercicios. El progreso ha sido muy bueno después de solo 5 sesiones. Recomendado.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Otro ejemplo de comentario -->
+                    <div class="comentario-card">
+                        <div class="comentario-header">
+                            <div class="usuario-info">
+                                <div class="usuario-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="usuario-nombre">
+                                    <span>Pedro Martínez</span>
+                                    <span class="fecha-comentario">5 de octubre, 2023</span>
+                                </div>
+                            </div>
+                            <div class="entrenador-comentado">
+                                <span>Sobre:</span>
+                                <strong>Laura Méndez</strong>
+                                <span class="servicio-comentado">Nutrición deportiva</span>
+                            </div>
+                        </div>
+                        
+                        <div class="valoracion">
+                            <div class="estrellas">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-numero">5.0</span>
+                        </div>
+                        
+                        <div class="comentario-texto">
+                            <p>Laura es una gran profesional. El plan nutricional que me diseñó se ajustó perfectamente a mis necesidades y mis objetivos de perder peso mientras mantenía la energía para entrenar. Muy contento con los resultados.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Modal para Valorar Sesión -->
+    <div class="modal" id="modal-valoracion">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Valorar Sesión</h2>
+                <button class="modal-cerrar">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="form-valoracion">
+                    <input type="hidden" id="sesion-id">
+                    <input type="hidden" id="entrenador-id">
+                    
+                    <div class="valoracion-entrenador">
+                        <div class="entrenador-info-modal">
+                            <div class="entrenador-avatar-modal">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="entrenador-detalles-modal">
+                                <h3 id="entrenador-nombre-modal">Nombre del Entrenador</h3>
+                                <span id="servicio-nombre-modal">Nombre del Servicio</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Tu Valoración</label>
+                        <div class="valoracion-selector">
+                            <div class="estrellas-selector">
+                                <i class="far fa-star estrella-selector" data-valor="1"></i>
+                                <i class="far fa-star estrella-selector" data-valor="2"></i>
+                                <i class="far fa-star estrella-selector" data-valor="3"></i>
+                                <i class="far fa-star estrella-selector" data-valor="4"></i>
+                                <i class="far fa-star estrella-selector" data-valor="5"></i>
+                            </div>
+                            <span class="rating-texto">Selecciona una valoración</span>
+                        </div>
+                        <input type="hidden" id="valoracion-input" required>
+                        <span class="form-error" id="valoracion-error"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="comentario-input">Tu Comentario</label>
+                        <textarea id="comentario-input" rows="4" placeholder="Comparte tu experiencia con este entrenador..." required></textarea>
+                        <span class="form-error" id="comentario-error"></span>
+                    </div>
+                    
+                    <div class="form-check">
+                        <input type="checkbox" id="confirmar-asistencia" required>
+                        <label for="confirmar-asistencia">Confirmo que he asistido a esta sesión</label>
+                        <span class="form-error" id="confirmar-error"></span>
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button type="button" class="btn-secundario" id="btn-cancelar-valoracion">Cancelar</button>
+                        <button type="submit" class="btn-primary" id="btn-enviar-valoracion">Enviar Valoración</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elementos del DOM
+            const btnValorar = document.querySelectorAll('.btn-valorar');
+            const modalValoracion = document.getElementById('modal-valoracion');
+            const btnCerrarModal = document.querySelectorAll('.modal-cerrar');
+            const btnCancelarValoracion = document.getElementById('btn-cancelar-valoracion');
+            const formValoracion = document.getElementById('form-valoracion');
+            const estrellasSelector = document.querySelectorAll('.estrella-selector');
+            const ratingTexto = document.querySelector('.rating-texto');
+            const filtroEntrenador = document.getElementById('filtro-entrenador');
+            const filtroRating = document.getElementById('filtro-rating');
+            const buscarComentarios = document.getElementById('buscar-comentarios');
+            
+            // Base de datos simulada de comentarios
+            let comentarios = [
+                {
+                    id: 1,
+                    usuario: 'María García',
+                    fecha: '18 de septiembre, 2023',
+                    entrenador: 'Javier Torres',
+                    entrenadorId: 3,
+                    servicio: 'Entrenamiento de fuerza',
+                    rating: 4,
+                    comentario: 'Excelente profesional, muy atento a la técnica y con mucha paciencia para explicar los ejercicios. El progreso ha sido muy bueno después de solo 5 sesiones. Recomendado.'
+                },
+                {
+                    id: 2,
+                    usuario: 'Pedro Martínez',
+                    fecha: '5 de octubre, 2023',
+                    entrenador: 'Laura Méndez',
+                    entrenadorId: 2,
+                    servicio: 'Nutrición deportiva',
+                    rating: 5,
+                    comentario: 'Laura es una gran profesional. El plan nutricional que me diseñó se ajustó perfectamente a mis necesidades y mis objetivos de perder peso mientras mantenía la energía para entrenar. Muy contento con los resultados.'
+                },
+                {
+                    id: 3,
+                    usuario: 'Ana López',
+                    fecha: '30 de septiembre, 2023',
+                    entrenador: 'Carlos Rodríguez',
+                    entrenadorId: 1,
+                    servicio: 'Entrenamiento para maratón',
+                    rating: 3,
+                    comentario: 'El entrenamiento estuvo bien, pero me hubiera gustado más atención personalizada. Los ejercicios son adecuados, pero siento que la planificación podría mejorar.'
+                }
+            ];
+            
+            // Abrir modal para valorar sesión
+            btnValorar.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const sesionId = this.getAttribute('data-id');
+                    const entrenador = this.getAttribute('data-entrenador');
+                    const servicio = this.getAttribute('data-servicio');
+                    
+                    document.getElementById('sesion-id').value = sesionId;
+                    document.getElementById('entrenador-nombre-modal').textContent = entrenador;
+                    document.getElementById('servicio-nombre-modal').textContent = servicio;
+                    
+                    // Asignar ID de entrenador (simulado)
+                    let entrenadorId = 1;
+                    if (entrenador === 'Laura Méndez') entrenadorId = 2;
+                    if (entrenador === 'Javier Torres') entrenadorId = 3;
+                    document.getElementById('entrenador-id').value = entrenadorId;
+                    
+                    // Resetear valoración
+                    document.getElementById('valoracion-input').value = '';
+                    document.getElementById('comentario-input').value = '';
+                    document.getElementById('confirmar-asistencia').checked = false;
+                    
+                    estrellasSelector.forEach(estrella => {
+                        estrella.className = 'far fa-star estrella-selector';
+                    });
+                    ratingTexto.textContent = 'Selecciona una valoración';
+                    
+                    modalValoracion.classList.add('show');
+                });
+            });
+            
+            // Cerrar modal
+            btnCerrarModal.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    modalValoracion.classList.remove('show');
+                });
+            });
+            
+            // Botón cancelar valoración
+            btnCancelarValoracion.addEventListener('click', function() {
+                modalValoracion.classList.remove('show');
+            });
+            
+            // Funcionamiento de las estrellas
+            estrellasSelector.forEach(estrella => {
+                estrella.addEventListener('mouseover', function() {
+                    const valor = parseInt(this.getAttribute('data-valor'));
+                    
+                    // Iluminar estrellas hasta la actual
+                    estrellasSelector.forEach(e => {
+                        const valorEstrella = parseInt(e.getAttribute('data-valor'));
+                        if (valorEstrella <= valor) {
+                            e.className = 'fas fa-star estrella-selector';
+                        } else {
+                            e.className = 'far fa-star estrella-selector';
+                        }
+                    });
+                });
+                
+                estrella.addEventListener('mouseout', function() {
+                    const valorSeleccionado = document.getElementById('valoracion-input').value;
+                    if (!valorSeleccionado) {
+                        // Si no hay valor seleccionado, quitar todas las estrellas
+                        estrellasSelector.forEach(e => {
+                            e.className = 'far fa-star estrella-selector';
+                        });
+                    } else {
+                        // Mantener las estrellas seleccionadas
+                        estrellasSelector.forEach(e => {
+                            const valorEstrella = parseInt(e.getAttribute('data-valor'));
+                            if (valorEstrella <= parseInt(valorSeleccionado)) {
+                                e.className = 'fas fa-star estrella-selector';
+                            } else {
+                                e.className = 'far fa-star estrella-selector';
+                            }
+                        });
+                    }
+                });
+                
+                estrella.addEventListener('click', function() {
+                    const valor = parseInt(this.getAttribute('data-valor'));
+                    document.getElementById('valoracion-input').value = valor;
+                    
+                    // Actualizar texto
+                    const textos = ['Muy malo', 'Malo', 'Regular', 'Bueno', 'Excelente'];
+                    ratingTexto.textContent = textos[valor - 1];
+                    
+                    // Mantener estrellas iluminadas
+                    estrellasSelector.forEach(e => {
+                        const valorEstrella = parseInt(e.getAttribute('data-valor'));
+                        if (valorEstrella <= valor) {
+                            e.className = 'fas fa-star estrella-selector';
+                        } else {
+                            e.className = 'far fa-star estrella-selector';
+                        }
+                    });
+                });
+            });
+            
+            // Enviar valoración
+            formValoracion.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                if (validarFormularioValoracion()) {
+                    guardarValoracion();
+                    modalValoracion.classList.remove('show');
+                    
+                    // Eliminar la sesión de la lista pendiente (simulado)
+                    const sesionId = document.getElementById('sesion-id').value;
+                    const sesionCard = document.querySelector(`.sesion-card[data-id="${sesionId}"]`);
+                    if (sesionCard) {
+                        sesionCard.remove();
+                    }
+                    
+                    // Verificar si no hay más sesiones pendientes
+                    const sesionesRestantes = document.querySelectorAll('.sesion-card').length;
+                    if (sesionesRestantes === 0) {
+                        const sesionesContainer = document.querySelector('.sesiones-container');
+                        sesionesContainer.innerHTML = `
+                            <div class="no-sesiones">
+                                <i class="far fa-check-circle"></i>
+                                <p>¡Has valorado todas tus sesiones recientes!</p>
+                            </div>
+                        `;
+                    }
+                }
+            });
+            
+            // Función para validar el formulario de valoración
+            function validarFormularioValoracion() {
+                let esValido = true;
+                
+                // Validar valoración
+                const valoracion = document.getElementById('valoracion-input').value;
+                if (!valoracion) {
+                    document.getElementById('valoracion-error').textContent = 'Debes seleccionar una valoración';
+                    esValido = false;
+                } else {
+                    document.getElementById('valoracion-error').textContent = '';
+                }
+                
+                // Validar comentario
+                const comentario = document.getElementById('comentario-input').value.trim();
+                if (!comentario) {
+                    document.getElementById('comentario-error').textContent = 'Debes escribir un comentario';
+                    esValido = false;
+                } else if (comentario.length < 10) {
+                    document.getElementById('comentario-error').textContent = 'Tu comentario debe tener al menos 10 caracteres';
+                    esValido = false;
+                } else {
+                    document.getElementById('comentario-error').textContent = '';
+                }
+                
+                // Validar confirmación
+                const confirmacion = document.getElementById('confirmar-asistencia').checked;
+                if (!confirmacion) {
+                    document.getElementById('confirmar-error').textContent = 'Debes confirmar que asististe a la sesión';
+                    esValido = false;
+                } else {
+                    document.getElementById('confirmar-error').textContent = '';
+                }
+                
+                return esValido;
+            }
+            
+            // Función para guardar la valoración
+            function guardarValoracion() {
+                const sesionId = document.getElementById('sesion-id').value;
+                const entrenadorId = document.getElementById('entrenador-id').value;
+                const entrenadorNombre = document.getElementById('entrenador-nombre-modal').textContent;
+                const servicioNombre = document.getElementById('servicio-nombre-modal').textContent;
+                const valoracion = parseInt(document.getElementById('valoracion-input').value);
+                const comentarioTexto = document.getElementById('comentario-input').value;
+                
+                // Obtener fecha actual formateada
+                const hoy = new Date();
+                const opciones = { year: 'numeric', month: 'long', day: 'numeric' };
+                const fecha = hoy.toLocaleDateString('es-ES', opciones);
+                
+                // Crear nuevo comentario
+                const nuevoComentario = {
+                    id: comentarios.length + 1,
+                    usuario: 'Usuario Actual', // En una app real, sería el usuario logueado
+                    fecha: fecha,
+                    entrenador: entrenadorNombre,
+                    entrenadorId: parseInt(entrenadorId),
+                    servicio: servicioNombre,
+                    rating: valoracion,
+                    comentario: comentarioTexto
+                };
+                
+                // Añadir a la lista de comentarios
+                comentarios.unshift(nuevoComentario); // Añadir al principio
+                
+                // Actualizar la lista de comentarios en pantalla
+                actualizarListaComentarios();
+                
+                // Mostrar mensaje de éxito
+                alert('¡Gracias por tu valoración!');
+            }
+            
+            // Filtrar comentarios
+            filtroEntrenador.addEventListener('change', filtrarComentarios);
+            filtroRating.addEventListener('change', filtrarComentarios);
+            buscarComentarios.addEventListener('input', filtrarComentarios);
+            
+            // Función para filtrar comentarios
+            function filtrarComentarios() {
+                actualizarListaComentarios();
+            }
+            
+            // Función para actualizar la lista de comentarios
+            function actualizarListaComentarios() {
+                const comentariosList = document.getElementById('comentarios-list');
+                comentariosList.innerHTML = '';
+                
+                // Obtener filtros
+                const entrenadorFiltro = filtroEntrenador.value;
+                const ratingFiltro = filtroRating.value;
+                const busqueda = buscarComentarios.value.toLowerCase();
+                
+                // Aplicar filtros
+                let comentariosFiltrados = [...comentarios];
+                
+                if (entrenadorFiltro !== 'todos') {
+                    comentariosFiltrados = comentariosFiltrados.filter(c => 
+                        c.entrenadorId == entrenadorFiltro
+                    );
+                }
+                
+                if (ratingFiltro !== 'todos') {
+                    comentariosFiltrados = comentariosFiltrados.filter(c => 
+                        c.rating >= parseInt(ratingFiltro)
+                    );
+                }
+                
+                if (busqueda) {
+                    comentariosFiltrados = comentariosFiltrados.filter(c => 
+                        c.comentario.toLowerCase().includes(busqueda) || 
+                        c.entrenador.toLowerCase().includes(busqueda) ||
+                        c.servicio.toLowerCase().includes(busqueda)
+                    );
+                }
+                
+                if (comentariosFiltrados.length === 0) {
+                    comentariosList.innerHTML = `
+                        <div class="no-comentarios">
+                            <i class="far fa-comment-dots"></i>
+                            <p>No se encontraron comentarios</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                // Renderizar comentarios filtrados
+                comentariosFiltrados.forEach(comentario => {
+                    const comentarioHTML = generarHTMLComentario(comentario);
+                    comentariosList.innerHTML += comentarioHTML;
+                });
+            }
+            
+            // Función para generar el HTML de un comentario
+            function generarHTMLComentario(comentario) {
+                // Generar estrellas HTML
+                let estrellasHTML = '';
+                for (let i = 1; i <= 5; i++) {
+                    if (i <= comentario.rating) {
+                        estrellasHTML += '<i class="fas fa-star"></i>';
+                    } else {
+                        estrellasHTML += '<i class="far fa-star"></i>';
+                    }
+                }
+                
+                return `
+                    <div class="comentario-card">
+                        <div class="comentario-header">
+                            <div class="usuario-info">
+                                <div class="usuario-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="usuario-nombre">
+                                    <span>${comentario.usuario}</span>
+                                    <span class="fecha-comentario">${comentario.fecha}</span>
+                                </div>
+                            </div>
+                            <div class="entrenador-comentado">
+                                <span>Sobre:</span>
+                                <strong>${comentario.entrenador}</strong>
+                                <span class="servicio-comentado">${comentario.servicio}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="valoracion">
+                            <div class="estrellas">
+                                ${estrellasHTML}
+                            </div>
+                            <span class="rating-numero">${comentario.rating}.0</span>
+                        </div>
+                        
+                        <div class="comentario-texto">
+                            <p>${comentario.comentario}</p>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Inicializar la lista de comentarios
+            actualizarListaComentarios();
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitMarket - Registro</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- Encabezado -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo-link">
+                    <div class="logo">FitMarket</div>
+                </a>
+                <nav class="nav">
+                    <a href="login.html" class="nav-link">Ingresar</a>
+                    <a href="registro.html" class="nav-link">Registrarse</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sección de Registro -->
+    <section id="register" class="register-section">
+        <div class="container">
+            <div class="register-tabs">
+                <button class="tab-btn active" data-tab="client">Cliente</button>
+                <button class="tab-btn" data-tab="trainer">Entrenador</button>
+            </div>
+            
+            <div class="tab-content active" id="client-tab">
+                <h2>Registro de Cliente</h2>
+                <div class="oauth-buttons">
+                    <button class="oauth-btn google-btn">
+                        <i class="fab fa-google"></i> Continuar con Google
+                    </button>
+                    <button class="oauth-btn facebook-btn">
+                        <i class="fab fa-facebook-f"></i> Continuar con Facebook
+                    </button>
+                </div>
+                
+                <div class="separator">
+                    <span>o registrarse con email</span>
+                </div>
+                
+                <form class="register-form" id="client-form" novalidate>
+                    <div class="form-group">
+                        <input type="text" id="client-nombre" placeholder="Nombre" required>
+                        <input type="text" id="client-apellido" placeholder="Apellido" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="email" id="client-email" placeholder="Correo electrónico" required>
+                        <span class="form-error" id="client-email-error"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="password" id="client-password" placeholder="Contraseña" required>
+                        <span class="form-error" id="client-password-error"></span>
+                    </div>
+                    
+                    <div class="password-requirements">
+                        <p>La contraseña debe tener:</p>
+                        <ul>
+                            <li id="length">Mínimo 8 caracteres</li>
+                            <li id="uppercase">Al menos una mayúscula</li>
+                            <li id="number">Al menos un número</li>
+                            <li id="special">Al menos un carácter especial</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="client-fecha">Fecha de nacimiento</label>
+                        <input type="date" id="client-fecha" required>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary">Registrarse como Cliente</button>
+                </form>
+                
+                <div class="login-link">
+                    ¿Ya tienes una cuenta? <a href="login.html">Inicia sesión</a>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="trainer-tab">
+                <h2>Registro de Entrenador</h2>
+                <div class="oauth-buttons">
+                    <button class="oauth-btn google-btn">
+                        <i class="fab fa-google"></i> Continuar con Google
+                    </button>
+                    <button class="oauth-btn facebook-btn">
+                        <i class="fab fa-facebook-f"></i> Continuar con Facebook
+                    </button>
+                </div>
+                
+                <div class="separator">
+                    <span>o registrarse con email</span>
+                </div>
+                
+                <form class="register-form" id="trainer-form" novalidate>
+                    <div class="form-group">
+                        <input type="text" id="trainer-nombre" placeholder="Nombre" required>
+                        <input type="text" id="trainer-apellido" placeholder="Apellido" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="email" id="trainer-email" placeholder="Correo electrónico" required>
+                        <span class="form-error" id="trainer-email-error"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="password" id="trainer-password" placeholder="Contraseña" required>
+                        <span class="form-error" id="trainer-password-error"></span>
+                    </div>
+                    
+                    <div class="password-requirements">
+                        <p>La contraseña debe tener:</p>
+                        <ul>
+                            <li id="t-length">Mínimo 8 caracteres</li>
+                            <li id="t-uppercase">Al menos una mayúscula</li>
+                            <li id="t-number">Al menos un número</li>
+                            <li id="t-special">Al menos un carácter especial</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="trainer-fecha">Fecha de nacimiento</label>
+                        <input type="date" id="trainer-fecha" required>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary">Registrarse como Entrenador</button>
+                </form>
+                
+                <div class="login-link">
+                    ¿Ya tienes una cuenta? <a href="login.html">Inicia sesión</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Script para manejar las pestañas de registro
+        document.addEventListener('DOMContentLoaded', function() {
+            // Control de pestañas
+            document.querySelectorAll('.tab-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remover clase active de todos los botones y contenidos
+                    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+                    document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+                    
+                    // Añadir clase active al botón clickeado
+                    button.classList.add('active');
+                    
+                    // Mostrar el contenido correspondiente
+                    const tabId = button.getAttribute('data-tab');
+                    document.getElementById(`${tabId}-tab`).classList.add('active');
+                });
+            });
+            
+            // Base de datos simulada para verificar emails duplicados
+            const emailsRegistrados = ['usuario@ejemplo.com', 'test@fitmarket.com'];
+            
+            // Validación de contraseña
+            function validarPassword(password) {
+                const validaciones = {
+                    length: password.length >= 8,
+                    uppercase: /[A-Z]/.test(password),
+                    number: /[0-9]/.test(password),
+                    special: /[!@#$%^&*(),.?":{}|<>]/.test(password)
+                };
+                
+                return validaciones;
+            }
+            
+            // Función para actualizar la lista de validaciones visualmente
+            function actualizarValidaciones(validaciones, prefix) {
+                Object.keys(validaciones).forEach(key => {
+                    const element = document.getElementById(`${prefix}-${key}`);
+                    if (element) {
+                        if (validaciones[key]) {
+                            element.classList.add('valid');
+                            element.classList.remove('invalid');
+                        } else {
+                            element.classList.add('invalid');
+                            element.classList.remove('valid');
+                        }
+                    }
+                });
+            }
+            
+            // Validación en tiempo real para contraseña de cliente
+            const clientPassword = document.getElementById('client-password');
+            if (clientPassword) {
+                clientPassword.addEventListener('input', function() {
+                    const validaciones = validarPassword(this.value);
+                    actualizarValidaciones(validaciones, '');
+                });
+            }
+            
+            // Validación en tiempo real para contraseña de entrenador
+            const trainerPassword = document.getElementById('trainer-password');
+            if (trainerPassword) {
+                trainerPassword.addEventListener('input', function() {
+                    const validaciones = validarPassword(this.value);
+                    actualizarValidaciones(validaciones, 't');
+                });
+            }
+            
+            // Validación de email duplicado para cliente
+            const clientEmail = document.getElementById('client-email');
+            const clientEmailError = document.getElementById('client-email-error');
+            
+            if (clientEmail && clientEmailError) {
+                clientEmail.addEventListener('blur', function() {
+                    if (emailsRegistrados.includes(this.value.toLowerCase())) {
+                        clientEmailError.textContent = 'Este email ya está registrado';
+                        this.classList.add('input-error');
+                    } else {
+                        clientEmailError.textContent = '';
+                        this.classList.remove('input-error');
+                    }
+                });
+            }
+            
+            // Validación de email duplicado para entrenador
+            const trainerEmail = document.getElementById('trainer-email');
+            const trainerEmailError = document.getElementById('trainer-email-error');
+            
+            if (trainerEmail && trainerEmailError) {
+                trainerEmail.addEventListener('blur', function() {
+                    if (emailsRegistrados.includes(this.value.toLowerCase())) {
+                        trainerEmailError.textContent = 'Este email ya está registrado';
+                        this.classList.add('input-error');
+                    } else {
+                        trainerEmailError.textContent = '';
+                        this.classList.remove('input-error');
+                    }
+                });
+            }
+            
+            // Validación del formulario de cliente
+            const clientForm = document.getElementById('client-form');
+            if (clientForm) {
+                clientForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    
+                    // Validar que todos los campos requeridos estén completos
+                    const requiredFields = this.querySelectorAll('[required]');
+                    let allValid = true;
+                    
+                    requiredFields.forEach(field => {
+                        if (!field.value) {
+                            field.classList.add('input-error');
+                            allValid = false;
+                        } else {
+                            field.classList.remove('input-error');
+                        }
+                    });
+                    
+                    // Validar contraseña
+                    const password = document.getElementById('client-password').value;
+                    const validaciones = validarPassword(password);
+                    const passwordValid = Object.values(validaciones).every(v => v);
+                    
+                    if (!passwordValid) {
+                        document.getElementById('client-password').classList.add('input-error');
+                        document.getElementById('client-password-error').textContent = 'La contraseña no cumple con los requisitos de seguridad';
+                        allValid = false;
+                    }
+                    
+                    // Validar email no duplicado
+                    const email = document.getElementById('client-email').value;
+                    if (emailsRegistrados.includes(email.toLowerCase())) {
+                        document.getElementById('client-email').classList.add('input-error');
+                        document.getElementById('client-email-error').textContent = 'Este email ya está registrado';
+                        allValid = false;
+                    }
+                    
+                    if (allValid) {
+                        // En un caso real, aquí se enviaría el formulario al servidor
+                        // y se generaría un JWT para el inicio de sesión
+                        alert('Registro exitoso como cliente');
+                        
+                        // Simulamos navegación a la página principal
+                        // window.location.href = 'index.html';
+                    }
+                });
+            }
+            
+            // Validación del formulario de entrenador
+            const trainerForm = document.getElementById('trainer-form');
+            if (trainerForm) {
+                trainerForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    
+                    // Validar que todos los campos requeridos estén completos
+                    const requiredFields = this.querySelectorAll('[required]');
+                    let allValid = true;
+                    
+                    requiredFields.forEach(field => {
+                        if (!field.value) {
+                            field.classList.add('input-error');
+                            allValid = false;
+                        } else {
+                            field.classList.remove('input-error');
+                        }
+                    });
+                    
+                    // Validar contraseña
+                    const password = document.getElementById('trainer-password').value;
+                    const validaciones = validarPassword(password);
+                    const passwordValid = Object.values(validaciones).every(v => v);
+                    
+                    if (!passwordValid) {
+                        document.getElementById('trainer-password').classList.add('input-error');
+                        document.getElementById('trainer-password-error').textContent = 'La contraseña no cumple con los requisitos de seguridad';
+                        allValid = false;
+                    }
+                    
+                    // Validar email no duplicado
+                    const email = document.getElementById('trainer-email').value;
+                    if (emailsRegistrados.includes(email.toLowerCase())) {
+                        document.getElementById('trainer-email').classList.add('input-error');
+                        document.getElementById('trainer-email-error').textContent = 'Este email ya está registrado';
+                        allValid = false;
+                    }
+                    
+                    if (allValid) {
+                        // En un caso real, aquí se enviaría el formulario al servidor
+                        // y se generaría un JWT para el inicio de sesión
+                        alert('Registro exitoso como entrenador');
+                        
+                        // Simulamos navegación a la página principal
+                        // window.location.href = 'index.html';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

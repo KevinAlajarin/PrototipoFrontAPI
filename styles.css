@@ -1,0 +1,1132 @@
+/* Variables */
+:root {
+    --primary-color: #5d3fd3;
+    --secondary-color: #eef2ff;
+    --dark-color: #27273f;
+    --light-color: #ffffff;
+    --gray-color: #f5f5f7;
+    --text-color: #333333;
+    --border-color: #e1e4e8;
+    --success-color: #4CAF50;
+    --badge-virtual: #6c5ce7;
+    --badge-presencial: #fdcb6e;
+    --badge-idioma: #00b894;
+}
+
+/* Reset y estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', 'Roboto', sans-serif;
+    color: var(--text-color);
+    line-height: 1.6;
+    background-color: var(--gray-color);
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+.header {
+    background-color: var(--light-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 15px 0;
+    position: relative;
+    z-index: 100;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.logo-link {
+    text-decoration: none;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+}
+
+.nav {
+    display: flex;
+    gap: 20px;
+    margin-left: auto;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--dark-color);
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: var(--primary-color);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #4a32b0;
+}
+
+/* Sección de login */
+.login-section {
+    padding: 60px 0;
+}
+
+.login-container {
+    background-color: var(--light-color);
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.login-container h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--dark-color);
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.login-form .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form input[type="email"],
+.login-form input[type="password"] {
+    padding: 12px;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    font-size: 16px;
+}
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.forgot-password {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+.login-form button {
+    margin-top: 10px;
+}
+
+.login-footer {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.login-footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.login-footer a:hover {
+    text-decoration: underline;
+}
+
+/* Sección de registro */
+.register-section {
+    background-color: var(--light-color);
+    padding: 40px 0;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.register-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.tab-btn {
+    padding: 10px 20px;
+    background: none;
+    border: none;
+    border-bottom: 2px solid var(--border-color);
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.tab-btn.active {
+    border-bottom: 2px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.tab-content {
+    display: none;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.tab-content h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--dark-color);
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.form-group input, 
+.form-group select, 
+.form-group textarea {
+    flex: 1;
+    min-width: 250px;
+    padding: 12px;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    font-size: 16px;
+}
+
+.form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* Sección de búsqueda */
+.search-section {
+    background-color: var(--light-color);
+    padding: 40px 0;
+    text-align: center;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.search-section h1 {
+    margin-bottom: 30px;
+    color: var(--dark-color);
+}
+
+/* Estilos para el nuevo sistema de filtros con botones */
+.filter-section {
+    margin-bottom: 25px;
+}
+
+.filter-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--dark-color);
+    text-align: left;
+}
+
+.filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 5px;
+}
+
+.filter-btn {
+    background-color: var(--gray-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 6px 10px;
+    border-radius: 16px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+    background-color: var(--secondary-color);
+    border-color: var(--primary-color);
+}
+
+.filter-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.sort-section {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+.sort-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.sort-group {
+    flex: 1;
+    min-width: 150px;
+}
+
+.sort-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.sort-select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    background-color: white;
+    font-size: 14px;
+}
+
+.filter-action-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+/* Actualizar estilos para el botón de limpiar */
+.btn-filter {
+    padding: 10px 15px;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+/* Listado de entrenadores */
+.trainers-list {
+    padding: 20px 0 50px;
+}
+
+.trainers-list .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.trainer-card {
+    background-color: var(--light-color);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    padding: 20px;
+}
+
+.trainer-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+.trainer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.trainer-header h3 {
+    font-size: 18px;
+    color: var(--dark-color);
+}
+
+.rating {
+    color: #ffc107;
+    font-weight: 500;
+}
+
+.category {
+    color: var(--primary-color);
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.description {
+    color: var(--text-color);
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.price {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: var(--dark-color);
+}
+
+.badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.badge {
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: white;
+}
+
+.badge.virtual {
+    background-color: var(--badge-virtual);
+}
+
+.badge.presencial {
+    background-color: var(--badge-presencial);
+    color: var(--dark-color);
+}
+
+.badge.idioma {
+    background-color: var(--badge-idioma);
+}
+
+/* Reseñas */
+.reviews {
+    margin-top: 20px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 15px;
+}
+
+.reviews h4 {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.review-item {
+    background-color: var(--gray-color);
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.reviewer {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.review-rating {
+    color: #ffc107;
+    font-size: 14px;
+}
+
+.review-item p {
+    font-size: 14px;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .trainers-list .container {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+    
+    .filter-group {
+        width: 100%;
+    }
+    
+    .search-filters select {
+        flex: 1;
+        min-width: 0;
+    }
+    
+    .logo {
+        margin-bottom: 0;
+    }
+    
+    .logo-link {
+        position: static;
+        transform: none;
+        margin-bottom: 15px;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .nav {
+        margin-left: 0;
+    }
+    
+    .login-container {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .trainers-list .container {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-group {
+        flex-direction: column;
+    }
+}
+
+/* Contenedor de filtros */
+.filter-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.filters-panel {
+    background-color: var(--secondary-color);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.filters-panel.visible {
+    display: block;
+}
+
+/* Botones de acción */
+.btn-clear {
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+}
+
+.btn-clear:hover {
+    background-color: var(--gray-color);
+}
+
+/* Estilos específicos para la página de registro */
+.oauth-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.oauth-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    background-color: var(--light-color);
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.oauth-btn i {
+    margin-right: 10px;
+}
+
+.google-btn {
+    color: #DB4437;
+    border-color: #DB4437;
+}
+
+.google-btn:hover {
+    background-color: #DB443710;
+}
+
+.facebook-btn {
+    color: #4267B2;
+    border-color: #4267B2;
+}
+
+.facebook-btn:hover {
+    background-color: #4267B210;
+}
+
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+    color: var(--text-color);
+}
+
+.separator::before,
+.separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.separator span {
+    padding: 0 10px;
+    font-size: 14px;
+}
+
+.password-requirements {
+    background-color: var(--gray-color);
+    padding: 12px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.password-requirements p {
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.password-requirements ul {
+    padding-left: 20px;
+}
+
+.password-requirements li {
+    margin-bottom: 3px;
+}
+
+.password-requirements li.valid {
+    color: var(--success-color);
+}
+
+.password-requirements li.invalid {
+    color: #f44336;
+}
+
+.form-error {
+    color: #f44336;
+    font-size: 12px;
+    margin-top: 5px;
+    display: block;
+}
+
+.input-error {
+    border-color: #f44336 !important;
+}
+
+.form-check {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.form-check input[type="checkbox"] {
+    margin-top: 3px;
+    margin-right: 10px;
+}
+
+.form-check label {
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.form-check a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.form-check a:hover {
+    text-decoration: underline;
+}
+
+.login-link {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.login-link a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive para registro */
+@media (max-width: 576px) {
+    .oauth-buttons {
+        padding: 0 10px;
+    }
+    
+    .register-section {
+        padding: 30px 15px;
+    }
+}
+
+/* Estilos para la página de recuperación de contraseña */
+.recovery-info {
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: var(--text-color);
+    text-align: center;
+}
+
+.success-message {
+    text-align: center;
+    color: var(--success-color);
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+.success-message i {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.success-message p {
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Responsive para página de recuperación */
+@media (max-width: 576px) {
+    .success-message i {
+        font-size: 36px;
+    }
+}
+
+/* Estilos para la página de perfil de entrenador */
+.profile-section {
+    padding: 40px 0;
+}
+
+.profile-container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+    padding: 30px;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.profile-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.profile-avatar i {
+    font-size: 40px;
+    color: white;
+}
+
+.profile-info h1 {
+    margin: 0 0 5px 0;
+    font-size: 24px;
+}
+
+.profile-email {
+    color: #666;
+    margin: 0;
+}
+
+.profile-navigation {
+    display: flex;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 30px;
+    overflow-x: auto;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    margin-right: 10px;
+    border-radius: 4px 4px 0 0;
+    cursor: pointer;
+    color: #666;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.nav-item:hover {
+    color: var(--primary-color);
+    background-color: #f8f9fa;
+}
+
+.nav-item.active {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+    font-weight: 500;
+}
+
+.nav-item i {
+    margin-right: 8px;
+}
+
+.action-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.action-card {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+}
+
+.action-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-icon {
+    width: 50px;
+    height: 50px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.card-icon i {
+    font-size: 20px;
+}
+
+.card-content h3 {
+    margin: 0 0 5px 0;
+    font-size: 16px;
+}
+
+.card-content p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.stats-summary h2,
+.quick-actions h2 {
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.stats-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+}
+
+.stat-card {
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.stat-number {
+    font-size: 36px;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.stat-label {
+    font-size: 14px;
+    color: #666;
+}
+
+.logout-link {
+    color: #dc3545;
+}
+
+/* Responsive para perfil */
+@media (max-width: 768px) {
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .profile-avatar {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+    
+    .action-cards, 
+    .stats-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Responsive para navegación del perfil */
+@media (max-width: 576px) {
+    .profile-navigation {
+        flex-wrap: nowrap;
+        padding-bottom: 10px;
+    }
+    
+    .nav-item {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+}
+
+/* Estilos para perfil de entrenador - botón de estadísticas */
+.view-stats-btn {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.view-stats-btn .btn-primary {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.view-stats-btn .btn-primary:hover {
+    background-color: #007bff;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para la sección de funcionalidades */
+.features-section {
+    padding: 60px 0;
+    background-color: #f8f9fa;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 40px;
+    color: #333;
+}
+
+.features-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.features-group {
+    flex: 1;
+    min-width: 300px;
+}
+
+.features-group h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.features-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.feature-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 25px 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(0, 123, 255, 0.1);
+    color: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.feature-icon i {
+    font-size: 24px;
+}
+
+.feature-card h4 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.feature-card p {
+    color: #666;
+    font-size: 15px;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.features-cta {
+    text-align: center;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.features-cta h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.btn-secondary {
+    display: inline-block;
+    padding: 10px 25px;
+    background-color: white;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #f2f2f2;
+    transform: translateY(-2px);
+}
+
+/* Estilos responsivos para sección de funcionalidades */
+@media (max-width: 768px) {
+    .features-container {
+        flex-direction: column;
+    }
+    
+    .features-cta {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .cta-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .feature-card {
+        padding: 20px 15px;
+    }
+    
+    .features-section {
+        padding: 40px 0;
+    }
+    
+    .section-title {
+        font-size: 28px;
+        margin-bottom: 30px;
+    }
+}

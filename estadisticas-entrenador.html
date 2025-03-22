@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitMarket - Estadísticas del Entrenador</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="estadisticas-entrenador.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Encabezado -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo-link">
+                    <div class="logo">FitMarket</div>
+                </a>
+                <nav class="nav">
+                    <a href="perfil-entrenador.html" class="nav-link">Mi Perfil</a>
+                    <a href="servicios-entrenador.html" class="nav-link">Mis Servicios</a>
+                    <a href="estadisticas-entrenador.html" class="nav-link active">Estadísticas</a>
+                    <a href="#" class="nav-link logout-link">Cerrar Sesión</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sección de Estadísticas -->
+    <section class="estadisticas-section">
+        <div class="container">
+            <div class="estadisticas-header">
+                <h1>Estadísticas de tus Servicios</h1>
+                <p class="subtitle">Monitorea el rendimiento de tus servicios y opiniones de los clientes</p>
+            </div>
+            
+            <!-- Filtros -->
+            <div class="filtros-container">
+                <div class="filtro-grupo">
+                    <label for="filtro-periodo">Periodo:</label>
+                    <select id="filtro-periodo">
+                        <option value="ultimo-mes">Último mes</option>
+                        <option value="ultimos-3-meses">Últimos 3 meses</option>
+                        <option value="ultimo-año">Último año</option>
+                        <option value="todo" selected>Todo</option>
+                    </select>
+                </div>
+                <div class="filtro-grupo">
+                    <label for="filtro-servicio">Servicio:</label>
+                    <select id="filtro-servicio">
+                        <option value="todos" selected>Todos los servicios</option>
+                        <option value="1">Entrenamiento para maratón</option>
+                        <option value="2">Nutrición deportiva</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Resumen rápido - KPIs -->
+            <div class="dashboard-resumen">
+                <div class="kpi-card">
+                    <div class="kpi-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <div class="kpi-content">
+                        <h3>Visualizaciones</h3>
+                        <div class="kpi-value">2,458</div>
+                        <div class="kpi-trend positivo">
+                            <i class="fas fa-arrow-up"></i> 12% vs periodo anterior
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="kpi-card">
+                    <div class="kpi-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <div class="kpi-content">
+                        <h3>Contrataciones</h3>
+                        <div class="kpi-value">125</div>
+                        <div class="kpi-trend positivo">
+                            <i class="fas fa-arrow-up"></i> 8% vs periodo anterior
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="kpi-card">
+                    <div class="kpi-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="kpi-content">
+                        <h3>Tasa de Conversión</h3>
+                        <div class="kpi-value">5.1%</div>
+                        <div class="kpi-trend negativo">
+                            <i class="fas fa-arrow-down"></i> 1.2% vs periodo anterior
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="kpi-card">
+                    <div class="kpi-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="kpi-content">
+                        <h3>Valoración Media</h3>
+                        <div class="kpi-value">4.7</div>
+                        <div class="kpi-trend positivo">
+                            <i class="fas fa-arrow-up"></i> 0.2 vs periodo anterior
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Gráficos de rendimiento -->
+            <div class="dashboard-graficos">
+                <div class="grafico-card wide">
+                    <div class="grafico-header">
+                        <h3>Visualizaciones por servicio</h3>
+                        <div class="grafico-filtros">
+                            <select id="filtro-grafico-visitas">
+                                <option value="semanal">Semanal</option>
+                                <option value="mensual" selected>Mensual</option>
+                                <option value="anual">Anual</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="grafico-container">
+                        <canvas id="grafico-visualizaciones"></canvas>
+                    </div>
+                </div>
+                
+                <div class="grafico-card">
+                    <div class="grafico-header">
+                        <h3>Distribución de calificaciones</h3>
+                    </div>
+                    <div class="grafico-container">
+                        <canvas id="grafico-calificaciones"></canvas>
+                    </div>
+                    <div class="grafico-footer">
+                        <div class="valor-total">
+                            <span>Total de calificaciones:</span>
+                            <strong>87</strong>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grafico-card">
+                    <div class="grafico-header">
+                        <h3>Tasa de conversión por servicio</h3>
+                    </div>
+                    <div class="grafico-container">
+                        <canvas id="grafico-conversion"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tabla de servicios -->
+            <div class="tabla-servicios">
+                <h2>Desempeño por Servicio</h2>
+                <div class="tabla-container">
+                    <table class="tabla-estadisticas">
+                        <thead>
+                            <tr>
+                                <th>Servicio</th>
+                                <th>Visualizaciones</th>
+                                <th>Contrataciones</th>
+                                <th>Tasa de conversión</th>
+                                <th>Valoración media</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Entrenamiento para maratón</td>
+                                <td>1,245</td>
+                                <td>78</td>
+                                <td>6.3%</td>
+                                <td>
+                                    <div class="valor-estrellas">
+                                        <div class="estrellas">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                        </div>
+                                        <span>4.5</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Nutrición deportiva</td>
+                                <td>865</td>
+                                <td>32</td>
+                                <td>3.7%</td>
+                                <td>
+                                    <div class="valor-estrellas">
+                                        <div class="estrellas">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <span>5.0</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Entrenamiento funcional</td>
+                                <td>348</td>
+                                <td>15</td>
+                                <td>4.3%</td>
+                                <td>
+                                    <div class="valor-estrellas">
+                                        <div class="estrellas">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                        </div>
+                                        <span>4.0</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Comentarios recientes -->
+            <div class="comentarios-recientes">
+                <div class="comentarios-header">
+                    <h2>Comentarios Recientes</h2>
+                    <div class="comentarios-acciones">
+                        <button class="btn-ver-todos">Ver todos los comentarios</button>
+                    </div>
+                </div>
+                
+                <div class="comentarios-list">
+                    <!-- Comentario sin respuesta -->
+                    <div class="comentario-card">
+                        <div class="comentario-header">
+                            <div class="usuario-info">
+                                <div class="usuario-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="usuario-nombre">
+                                    <span>María García</span>
+                                    <span class="fecha-comentario">18 de septiembre, 2023</span>
+                                </div>
+                            </div>
+                            <div class="servicio-comentado">
+                                <span>Servicio:</span>
+                                <strong>Entrenamiento para maratón</strong>
+                            </div>
+                        </div>
+                        
+                        <div class="valoracion">
+                            <div class="estrellas">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-numero">5.0</span>
+                        </div>
+                        
+                        <div class="comentario-texto">
+                            <p>Excelente entrenamiento. Me gustó mucho la planificación personalizada y el seguimiento constante. Gracias a este programa pude completar mi primera maratón.</p>
+                        </div>
+                        
+                        <div class="comentario-acciones">
+                            <button class="btn-responder" data-comentario-id="1">
+                                <i class="fas fa-reply"></i> Responder
+                            </button>
+                        </div>
+                        
+                        <div class="form-respuesta" id="respuesta-form-1" style="display: none;">
+                            <textarea placeholder="Escribe tu respuesta al comentario..."></textarea>
+                            <div class="form-acciones">
+                                <button class="btn-cancelar">Cancelar</button>
+                                <button class="btn-enviar">Responder</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Comentario con respuesta -->
+                    <div class="comentario-card">
+                        <div class="comentario-header">
+                            <div class="usuario-info">
+                                <div class="usuario-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="usuario-nombre">
+                                    <span>Carlos Sánchez</span>
+                                    <span class="fecha-comentario">2 de octubre, 2023</span>
+                                </div>
+                            </div>
+                            <div class="servicio-comentado">
+                                <span>Servicio:</span>
+                                <strong>Nutrición deportiva</strong>
+                            </div>
+                        </div>
+                        
+                        <div class="valoracion">
+                            <div class="estrellas">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="rating-numero">4.0</span>
+                        </div>
+                        
+                        <div class="comentario-texto">
+                            <p>El plan nutricional ha sido muy efectivo para mi rendimiento deportivo. Me gustaría que hubiera más opciones para intolerantes a la lactosa.</p>
+                        </div>
+                        
+                        <div class="comentario-respuesta">
+                            <div class="respuesta-header">
+                                <div class="entrenador-info">
+                                    <div class="entrenador-avatar">
+                                        <i class="fas fa-user-tie"></i>
+                                    </div>
+                                    <div class="entrenador-nombre">
+                                        <span>Tu respuesta</span>
+                                        <span class="fecha-respuesta">3 de octubre, 2023</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="respuesta-texto">
+                                <p>¡Gracias por tu comentario, Carlos! Estoy trabajando en ampliar las opciones para personas con intolerancias alimentarias. Te enviaré por correo una versión actualizada del plan con más alternativas sin lactosa.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Comentario negativo -->
+                    <div class="comentario-card comentario-negativo">
+                        <div class="comentario-header">
+                            <div class="usuario-info">
+                                <div class="usuario-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="usuario-nombre">
+                                    <span>Laura Martínez</span>
+                                    <span class="fecha-comentario">10 de octubre, 2023</span>
+                                </div>
+                            </div>
+                            <div class="servicio-comentado">
+                                <span>Servicio:</span>
+                                <strong>Entrenamiento funcional</strong>
+                            </div>
+                        </div>
+                        
+                        <div class="valoracion">
+                            <div class="estrellas">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="rating-numero">2.0</span>
+                        </div>
+                        
+                        <div class="comentario-texto">
+                            <p>La sesión fue demasiado intensa para mi nivel. Sentí que no se adaptó bien a mis necesidades como principiante. Además, el horario no fue respetado y empezamos 15 minutos tarde.</p>
+                        </div>
+                        
+                        <div class="comentario-acciones">
+                            <button class="btn-responder" data-comentario-id="3">
+                                <i class="fas fa-reply"></i> Responder
+                            </button>
+                        </div>
+                        
+                        <div class="form-respuesta" id="respuesta-form-3" style="display: none;">
+                            <textarea placeholder="Escribe tu respuesta al comentario..."></textarea>
+                            <div class="form-acciones">
+                                <button class="btn-cancelar">Cancelar</button>
+                                <button class="btn-enviar">Responder</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Manejo de los botones de respuesta
+            const botonesResponder = document.querySelectorAll('.btn-responder');
+            
+            botonesResponder.forEach(boton => {
+                boton.addEventListener('click', function() {
+                    const comentarioId = this.getAttribute('data-comentario-id');
+                    const formRespuesta = document.getElementById(`respuesta-form-${comentarioId}`);
+                    
+                    // Mostrar el formulario de respuesta
+                    if (formRespuesta.style.display === 'none') {
+                        formRespuesta.style.display = 'block';
+                        this.innerHTML = '<i class="fas fa-times"></i> Cancelar';
+                    } else {
+                        formRespuesta.style.display = 'none';
+                        this.innerHTML = '<i class="fas fa-reply"></i> Responder';
+                    }
+                });
+            });
+            
+            // Botones de cancelar respuesta
+            document.querySelectorAll('.btn-cancelar').forEach(boton => {
+                boton.addEventListener('click', function() {
+                    const formRespuesta = this.closest('.form-respuesta');
+                    const comentarioId = formRespuesta.id.split('-')[2];
+                    const botonResponder = document.querySelector(`[data-comentario-id="${comentarioId}"]`);
+                    
+                    formRespuesta.style.display = 'none';
+                    botonResponder.innerHTML = '<i class="fas fa-reply"></i> Responder';
+                });
+            });
+            
+            // Gráficos usando Chart.js
+            
+            // Gráfico de visualizaciones
+            const ctxVisualizaciones = document.getElementById('grafico-visualizaciones').getContext('2d');
+            const graficoVisualizaciones = new Chart(ctxVisualizaciones, {
+                type: 'line',
+                data: {
+                    labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                    datasets: [
+                        {
+                            label: 'Entrenamiento para maratón',
+                            data: [120, 145, 160, 185, 210, 230, 250, 240, 260, 290, 310, 325],
+                            borderColor: '#4e73df',
+                            backgroundColor: 'rgba(78, 115, 223, 0.1)',
+                            borderWidth: 2,
+                            tension: 0.3,
+                            fill: true
+                        },
+                        {
+                            label: 'Nutrición deportiva',
+                            data: [80, 95, 100, 110, 130, 155, 170, 175, 190, 200, 220, 235],
+                            borderColor: '#1cc88a',
+                            backgroundColor: 'rgba(28, 200, 138, 0.1)',
+                            borderWidth: 2,
+                            tension: 0.3,
+                            fill: true
+                        },
+                        {
+                            label: 'Entrenamiento funcional',
+                            data: [40, 35, 45, 50, 55, 60, 70, 65, 75, 80, 85, 95],
+                            borderColor: '#f6c23e',
+                            backgroundColor: 'rgba(246, 194, 62, 0.1)',
+                            borderWidth: 2,
+                            tension: 0.3,
+                            fill: true
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            
+            // Gráfico de distribución de calificaciones
+            const ctxCalificaciones = document.getElementById('grafico-calificaciones').getContext('2d');
+            const graficoCalificaciones = new Chart(ctxCalificaciones, {
+                type: 'bar',
+                data: {
+                    labels: ['5★', '4★', '3★', '2★', '1★'],
+                    datasets: [{
+                        label: 'Cantidad de calificaciones',
+                        data: [45, 22, 12, 5, 3],
+                        backgroundColor: [
+                            '#1cc88a',
+                            '#4e73df',
+                            '#f6c23e',
+                            '#e74a3b',
+                            '#e74a3b'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            
+            // Gráfico de tasa de conversión
+            const ctxConversion = document.getElementById('grafico-conversion').getContext('2d');
+            const graficoConversion = new Chart(ctxConversion, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Entrenamiento para maratón', 'Nutrición deportiva', 'Entrenamiento funcional'],
+                    datasets: [{
+                        data: [6.3, 3.7, 4.3],
+                        backgroundColor: [
+                            '#4e73df',
+                            '#1cc88a',
+                            '#f6c23e'
+                        ],
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.label + ': ' + context.raw + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,487 @@
+/* Estilos para la página de comentarios y valoraciones */
+:root {
+    --estrellas-color: #FFD700;
+    --estrellas-inactive: #E0E0E0;
+}
+
+/* Estilos del header de comentarios */
+.comentarios-header {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.comentarios-header h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.comentarios-header .subtitle {
+    color: #666;
+    font-size: 18px;
+    margin: 0;
+}
+
+/* Filtros */
+.filtros-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 25px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.filtro-grupo {
+    display: flex;
+    align-items: center;
+}
+
+.filtro-grupo label {
+    margin-right: 8px;
+    font-weight: 500;
+}
+
+.filtro-grupo select {
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+}
+
+.filtro-busqueda {
+    display: flex;
+    flex-grow: 1;
+}
+
+.filtro-busqueda input {
+    flex-grow: 1;
+    padding: 8px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px 0 0 4px;
+}
+
+.btn-buscar {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+/* Sección de mis sesiones */
+.mis-sesiones {
+    margin-bottom: 40px;
+}
+
+.mis-sesiones h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.info-text {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.sesiones-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 20px;
+}
+
+.sesion-card {
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.sesion-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.sesion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.entrenador-info {
+    display: flex;
+    align-items: center;
+}
+
+.entrenador-avatar {
+    width: 40px;
+    height: 40px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.entrenador-avatar i {
+    font-size: 18px;
+}
+
+.entrenador-detalles h3 {
+    margin: 0 0 5px 0;
+    font-size: 16px;
+}
+
+.servicio-nombre {
+    color: #666;
+    font-size: 14px;
+}
+
+.sesion-fecha {
+    display: flex;
+    align-items: center;
+    color: #666;
+    font-size: 14px;
+}
+
+.sesion-fecha i {
+    margin-right: 5px;
+    color: var(--primary-color);
+}
+
+.sesion-detalles {
+    display: flex;
+    margin-bottom: 15px;
+    gap: 20px;
+}
+
+.detalle {
+    display: flex;
+    align-items: center;
+    color: #666;
+    font-size: 14px;
+}
+
+.detalle i {
+    margin-right: 5px;
+    color: var(--primary-color);
+}
+
+.valoracion-pendiente {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.valoracion-pendiente p {
+    margin: 0 0 10px 0;
+    font-weight: 500;
+}
+
+.btn-valorar {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 15px;
+    cursor: pointer;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    transition: background-color 0.2s;
+}
+
+.btn-valorar i {
+    margin-right: 5px;
+    color: var(--estrellas-color);
+}
+
+.btn-valorar:hover {
+    background-color: #007bff;
+}
+
+/* Sección de comentarios */
+.comentarios-container {
+    margin-bottom: 40px;
+}
+
+.comentarios-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.comentarios-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 20px;
+}
+
+.comentario-card {
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.comentario-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.comentario-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.usuario-info {
+    display: flex;
+    align-items: center;
+}
+
+.usuario-avatar {
+    width: 40px;
+    height: 40px;
+    background-color: #6c757d;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.usuario-avatar i {
+    font-size: 18px;
+}
+
+.usuario-nombre {
+    display: flex;
+    flex-direction: column;
+}
+
+.usuario-nombre span:first-child {
+    font-weight: 500;
+}
+
+.fecha-comentario {
+    color: #666;
+    font-size: 12px;
+    margin-top: 3px;
+}
+
+.entrenador-comentado {
+    color: #666;
+    font-size: 14px;
+    text-align: right;
+}
+
+.entrenador-comentado strong {
+    color: #212529;
+    font-weight: 600;
+    display: block;
+    margin: 3px 0;
+}
+
+.servicio-comentado {
+    color: var(--primary-color);
+    font-size: 13px;
+    display: block;
+}
+
+.valoracion {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.estrellas {
+    display: flex;
+    margin-right: 10px;
+}
+
+.estrellas i {
+    color: var(--estrellas-color);
+    margin-right: 2px;
+}
+
+.estrellas i.far {
+    color: var(--estrellas-inactive);
+}
+
+.rating-numero {
+    font-weight: bold;
+    color: #212529;
+}
+
+.comentario-texto p {
+    margin: 0;
+    line-height: 1.5;
+    color: #444;
+}
+
+/* Modal para valorar */
+.valoracion-entrenador {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.entrenador-info-modal {
+    display: flex;
+    align-items: center;
+}
+
+.entrenador-avatar-modal {
+    width: 50px;
+    height: 50px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.entrenador-avatar-modal i {
+    font-size: 24px;
+}
+
+.entrenador-detalles-modal h3 {
+    margin: 0 0 5px 0;
+    font-size: 18px;
+}
+
+.valoracion-selector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 0 20px;
+}
+
+.estrellas-selector {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.estrella-selector {
+    color: var(--estrellas-color);
+    font-size: 30px;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+.estrella-selector.far {
+    color: var(--estrellas-inactive);
+}
+
+.rating-texto {
+    color: #666;
+    font-size: 14px;
+}
+
+.form-check {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.form-check input[type="checkbox"] {
+    margin-right: 10px;
+    width: auto;
+}
+
+/* Mensajes de no resultados */
+.no-comentarios, 
+.no-sesiones {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.no-comentarios i,
+.no-sesiones i {
+    font-size: 48px;
+    color: #adb5bd;
+    margin-bottom: 15px;
+}
+
+.no-sesiones i {
+    color: var(--primary-color);
+}
+
+/* Mensajes de error del formulario */
+.form-error {
+    color: #dc3545;
+    font-size: 13px;
+    margin-top: 5px;
+    display: block;
+}
+
+/* Estilos responsive */
+@media (max-width: 768px) {
+    .filtros-container,
+    .sesiones-container,
+    .comentarios-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .comentario-header,
+    .sesion-header {
+        flex-direction: column;
+    }
+    
+    .entrenador-comentado {
+        text-align: left;
+        margin-top: 10px;
+    }
+    
+    .sesion-fecha {
+        margin-top: 10px;
+    }
+    
+    .filtros-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .filtro-grupo {
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .modal-content {
+        padding: 10px;
+    }
+    
+    .sesion-detalles {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .estrellas-selector {
+        margin-bottom: 15px;
+    }
+    
+    .estrella-selector {
+        font-size: 24px;
+    }
+} 
