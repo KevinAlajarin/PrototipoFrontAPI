@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitConnect - Contratar Servicio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="contratar-servicio.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Fit Connect</h1>
+        </div>
+        <nav class="nav">
+            <a href="index.html" class="nav-link">Inicio</a>
+            <a href="servicios-entrenador.html" class="nav-link">Servicios</a>
+            <a href="estadisticas-entrenador.html" class="nav-link">Estadísticas</a>
+            <a href="login.html" class="nav-link">Ingresar</a>
+            <a href="registro.html" class="nav-link">Registrarse</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="checkout-container">
+            <!-- Pasos del checkout -->
+            <div class="checkout-steps">
+                <div class="step active" id="step-1">
+                    <div class="step-number">1</div>
+                    <span class="step-text">Revisar servicio</span>
+                </div>
+                <div class="step" id="step-2">
+                    <div class="step-number">2</div>
+                    <span class="step-text">Datos de pago</span>
+                </div>
+                <div class="step" id="step-3">
+                    <div class="step-number">3</div>
+                    <span class="step-text">Confirmación</span>
+                </div>
+            </div>
+
+            <!-- Paso 1: Detalles del servicio -->
+            <div class="checkout-step-content" id="step-1-content">
+                <h2>Detalles del servicio</h2>
+                
+                <div class="service-summary">
+                    <div class="service-header">
+                        <div class="back-link">
+                            <a href="index.html"><i class="fas fa-arrow-left"></i> Volver a la búsqueda</a>
+                        </div>
+                        <div class="service-badge">Running</div>
+                    </div>
+                    
+                    <div class="service-details">
+                        <div class="trainer-profile">
+                            <div class="trainer-photo">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Carlos Rodríguez">
+                            </div>
+                            <div class="trainer-info">
+                                <h2 class="trainer-name">Carlos Rodríguez</h2>
+                                <div class="trainer-rating">
+                                    <span class="stars">★★★★★</span>
+                                    <span class="rating-value">4.8</span>
+                                    <span class="review-count">(45 opiniones)</span>
+                                </div>
+                                <div class="trainer-badges">
+                                    <span class="badge virtual">Virtual</span>
+                                    <span class="badge-location">Palermo</span>
+                                    <span class="badge-idioma">Español</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="service-main">
+                            <h3>Running</h3>
+                            <p class="service-description">Preparación personalizada para carreras desde 5K hasta maratón completa. Incluye planificación de entrenamiento, técnica de carrera y estrategias de competición.</p>
+                            
+                            <div class="service-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>Duración: 60 minutos</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-dollar-sign"></i>
+                                    <span>Precio: $3,500 por sesión</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="checkout-actions">
+                    <a href="index.html" class="btn-secundario">Cancelar</a>
+                    <button class="btn-primary" id="goto-step-2">Continuar al pago</button>
+                </div>
+            </div>
+
+            <!-- Paso 2: Formulario de pago -->
+            <div class="checkout-step-content hidden" id="step-2-content">
+                <h2>Datos de pago</h2>
+                
+                <div class="payment-methods">
+                    <div class="payment-method active" data-method="credit-card">
+                        <i class="far fa-credit-card"></i>
+                        <span>Tarjeta de crédito</span>
+                    </div>
+                    <div class="payment-method" data-method="mercado-pago">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <span>MercadoPago</span>
+                    </div>
+                </div>
+                
+                <div class="payment-forms">
+                    <!-- Formulario de tarjeta de crédito -->
+                    <div class="payment-form" id="credit-card-form">
+                        <div class="form-group">
+                            <label for="card-name">Nombre del titular</label>
+                            <input type="text" id="card-name" placeholder="Como aparece en la tarjeta">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="card-number">Número de tarjeta</label>
+                            <div class="card-input-container">
+                                <input type="text" id="card-number" placeholder="XXXX XXXX XXXX XXXX" maxlength="19">
+                                <div class="card-icons">
+                                    <i class="fab fa-cc-visa"></i>
+                                    <i class="fab fa-cc-mastercard"></i>
+                                    <i class="fab fa-cc-amex"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group half">
+                                <label for="card-expiry">Fecha de vencimiento</label>
+                                <input type="text" id="card-expiry" placeholder="MM/AA" maxlength="5">
+                            </div>
+                            <div class="form-group half">
+                                <label for="card-cvv">Código de seguridad</label>
+                                <input type="text" id="card-cvv" placeholder="CVV" maxlength="4">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="card-installments">Cuotas</label>
+                            <select id="card-installments">
+                                <option value="1">1 cuota de $20.000 ARS</option>
+                                <option value="3">3 cuotas de $6.800 ARS</option>
+                                <option value="6">6 cuotas de $3.500 ARS</option>
+                                <option value="12">12 cuotas de $1.800 ARS</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Información de MercadoPago -->
+                    <div class="payment-form hidden" id="mercado-pago-form">
+                        <div class="mercado-pago-info">
+                            <p>Serás redirigido a MercadoPago para completar tu pago de forma segura.</p>
+                            <div class="mercado-pago-logo">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Pago 100% seguro con MercadoPago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="payment-summary">
+                    <h3>Resumen del pago</h3>
+                    <div class="summary-item">
+                        <span class="summary-label">Servicio</span>
+                        <span class="summary-value">Running</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Entrenador</span>
+                        <span class="summary-value">Carlos Rodríguez</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Número de sesiones</span>
+                        <span class="summary-value" id="summary-sessions">4</span>
+                    </div>
+                    <div class="summary-item total">
+                        <span class="summary-label">Total</span>
+                        <span class="summary-value" id="summary-total">$14.000 ARS</span>
+                    </div>
+                </div>
+                
+                <div class="checkout-actions">
+                    <button class="btn-secundario" id="back-to-step-1">Volver</button>
+                    <button class="btn-primary" id="goto-step-3">Confirmar pago</button>
+                </div>
+            </div>
+
+            <!-- Paso 3: Confirmación -->
+            <div class="checkout-step-content hidden" id="step-3-content">
+                <div class="confirmation-content">
+                    <div class="confirmation-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    
+                    <h2>¡Tu contratación ha sido exitosa!</h2>
+                    <p>Gracias por contratar nuestros servicios. Tu entrenador <span>Carlos Rodríguez</span> ha sido notificado y revisará tu solicitud pronto.</p>
+                    
+                    <div class="confirmation-details">
+                        <div class="confirmation-item">
+                            <span class="confirmation-label">Servicio contratado:</span>
+                            <span>Running</span>
+                        </div>
+                        <div class="confirmation-item">
+                            <span class="confirmation-label">Número de referencia:</span>
+                            <span id="reference-number">FC-2023-58742</span>
+                        </div>
+                        <div class="confirmation-item">
+                            <span class="confirmation-label">Número de sesiones:</span>
+                            <span id="confirmation-sessions">4</span>
+                        </div>
+                        <div class="confirmation-item">
+                            <span class="confirmation-label">Monto pagado:</span>
+                            <span id="confirmation-amount">$14.000 ARS</span>
+                        </div>
+                        <div class="confirmation-item">
+                            <span class="confirmation-label">Estado:</span>
+                            <span class="status-pending">Pendiente de aprobación</span>
+                        </div>
+                    </div>
+                    
+                    <div class="next-steps">
+                        <h3>Próximos pasos:</h3>
+                        <ol>
+                            <li>El entrenador revisará tu solicitud dentro de las próximas 24 horas.</li>
+                            <li>Recibirás una notificación por correo electrónico cuando tu solicitud sea aceptada.</li>
+                            <li>Una vez aceptada, podrás coordinar los horarios directamente con tu entrenador.</li>
+                            <li>Puedes revisar el estado de tus servicios en tu panel de usuario en cualquier momento.</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="confirmation-actions">
+                        <a href="index.html" class="btn-secundario">Volver al inicio</a>
+                        <a href="#" class="btn-primary">Ver mis servicios</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Fit Connect</h3>
+                <p>Conectamos entrenadores personales con clientes de forma fácil y efectiva.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Enlaces rápidos</h3>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="servicios-entrenador.html">Servicios</a></li>
+                    <li><a href="login.html">Ingresar</a></li>
+                    <li><a href="registro.html">Registrarse</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <p>Email: info@fitconnect.com</p>
+                <p>Teléfono: +54 11 1234-5678</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Fit Connect - Todos los derechos reservados</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Variables para los pasos
+            const step1 = document.getElementById('step-1');
+            const step2 = document.getElementById('step-2');
+            const step3 = document.getElementById('step-3');
+            const step1Content = document.getElementById('step-1-content');
+            const step2Content = document.getElementById('step-2-content');
+            const step3Content = document.getElementById('step-3-content');
+            
+            // Botones de navegación
+            const gotoStep2Btn = document.getElementById('goto-step-2');
+            const backToStep1Btn = document.getElementById('back-to-step-1');
+            const gotoStep3Btn = document.getElementById('goto-step-3');
+            
+            // Control de sesiones y precio
+            const sessionsCount = document.getElementById('sessions-count');
+            const decreaseBtn = document.getElementById('decrease-sessions');
+            const increaseBtn = document.getElementById('increase-sessions');
+            const totalPrice = document.getElementById('total-price');
+            const summaryTotal = document.getElementById('summary-total');
+            const summarySessions = document.getElementById('summary-sessions');
+            const confirmationSessions = document.getElementById('confirmation-sessions');
+            const confirmationAmount = document.getElementById('confirmation-amount');
+            
+            // Precio por sesión
+            const pricePerSession = 3500;
+            
+            // Función para actualizar el precio total
+            function updateTotalPrice() {
+                const sessions = parseInt(sessionsCount.value);
+                const total = sessions * pricePerSession;
+                totalPrice.textContent = `$${total.toLocaleString()} ARS`;
+                summaryTotal.textContent = `$${total.toLocaleString()} ARS`;
+                summarySessions.textContent = sessions;
+                confirmationSessions.textContent = sessions;
+                confirmationAmount.textContent = `$${total.toLocaleString()} ARS`;
+                
+                // Actualizar opciones de cuotas
+                const installmentsSelect = document.getElementById('card-installments');
+                installmentsSelect.innerHTML = '';
+                
+                [1, 3, 6, 12].forEach(installment => {
+                    const installmentAmount = Math.ceil(total * (installment === 1 ? 1 : 1.02 + (installment * 0.01)) / installment);
+                    const option = document.createElement('option');
+                    option.value = installment;
+                    option.textContent = `${installment} ${installment === 1 ? 'cuota' : 'cuotas'} de $${installmentAmount.toLocaleString()} ARS`;
+                    installmentsSelect.appendChild(option);
+                });
+            }
+            
+            // Eventos de aumento y disminución de sesiones
+            decreaseBtn.addEventListener('click', function() {
+                let count = parseInt(sessionsCount.value);
+                if (count > 1) {
+                    sessionsCount.value = count - 1;
+                    updateTotalPrice();
+                }
+            });
+            
+            increaseBtn.addEventListener('click', function() {
+                let count = parseInt(sessionsCount.value);
+                if (count < 12) {
+                    sessionsCount.value = count + 1;
+                    updateTotalPrice();
+                }
+            });
+            
+            // Navegación entre pasos
+            gotoStep2Btn.addEventListener('click', function() {
+                step1.classList.remove('active');
+                step1.classList.add('completed');
+                step2.classList.add('active');
+                step1Content.classList.add('hidden');
+                step2Content.classList.remove('hidden');
+                updateTotalPrice();
+            });
+            
+            backToStep1Btn.addEventListener('click', function() {
+                step2.classList.remove('active');
+                step1.classList.remove('completed');
+                step1.classList.add('active');
+                step2Content.classList.add('hidden');
+                step1Content.classList.remove('hidden');
+            });
+            
+            gotoStep3Btn.addEventListener('click', function() {
+                // Aquí podría ir validación del formulario
+                step2.classList.remove('active');
+                step2.classList.add('completed');
+                step3.classList.add('active');
+                step2Content.classList.add('hidden');
+                step3Content.classList.remove('hidden');
+                
+                // Generar número de referencia aleatorio
+                const refNumber = 'FC-2023-' + Math.floor(10000 + Math.random() * 90000);
+                document.getElementById('reference-number').textContent = refNumber;
+            });
+            
+            // Cambio entre métodos de pago
+            const paymentMethods = document.querySelectorAll('.payment-method');
+            const creditCardForm = document.getElementById('credit-card-form');
+            const mercadoPagoForm = document.getElementById('mercado-pago-form');
+            
+            paymentMethods.forEach(method => {
+                method.addEventListener('click', function() {
+                    paymentMethods.forEach(m => m.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const methodType = this.getAttribute('data-method');
+                    if (methodType === 'credit-card') {
+                        creditCardForm.classList.remove('hidden');
+                        mercadoPagoForm.classList.add('hidden');
+                    } else {
+                        creditCardForm.classList.add('hidden');
+                        mercadoPagoForm.classList.remove('hidden');
+                    }
+                });
+            });
+            
+            // Formato para número de tarjeta
+            const cardNumber = document.getElementById('card-number');
+            cardNumber.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                let formattedValue = '';
+                
+                for (let i = 0; i < value.length && i < 16; i++) {
+                    if (i > 0 && i % 4 === 0) {
+                        formattedValue += ' ';
+                    }
+                    formattedValue += value[i];
+                }
+                
+                e.target.value = formattedValue;
+            });
+            
+            // Formato para fecha de vencimiento
+            const cardExpiry = document.getElementById('card-expiry');
+            cardExpiry.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                let formattedValue = '';
+                
+                if (value.length > 0) {
+                    formattedValue = value.slice(0, 2);
+                    if (value.length > 2) {
+                        formattedValue += '/' + value.slice(2, 4);
+                    }
+                }
+                
+                e.target.value = formattedValue;
+            });
+            
+            // Inicializar
+            updateTotalPrice();
+        });
+    </script>
+</body>
+</html> 

@@ -3,22 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FitMarket - Gestión de Servicios</title>
+    <title>FitConnect - Gestión de Servicios</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="common.css">
     <link rel="stylesheet" href="servicios-entrenador.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
     <!-- Encabezado -->
-    <header class="header">
+    <header>
         <div class="container">
             <div class="header-content">
-                <a href="index.html" class="logo-link">
-                    <div class="logo">FitMarket</div>
-                </a>
+                <div class="logo">
+                    <a href="index.html">FitConnect</a>
+                </div>
                 <nav class="nav">
                     <a href="perfil-entrenador.html" class="nav-link">Mi Perfil</a>
                     <a href="servicios-entrenador.html" class="nav-link active">Mis Servicios</a>
+                    <a href="estadisticas-entrenador.html" class="nav-link">Estadísticas</a>
                     <a href="#" class="nav-link">Cerrar Sesión</a>
                 </nav>
             </div>
@@ -67,36 +69,30 @@
                 <!-- Los servicios se cargarán dinámicamente aquí -->
                 
                 <!-- Ejemplo de servicio (se generará dinámicamente) -->
-                <div class="servicio-card" data-id="1">
+                <div class="servicio-card">
                     <div class="servicio-header">
                         <span class="servicio-categoria">Running</span>
-                        <div class="servicio-estado publicado">
+                        <span class="servicio-estado publicado">
                             <span class="estado-dot"></span>
-                            <span class="estado-texto">Publicado</span>
-                        </div>
+                            Publicado
+                        </span>
                     </div>
-                    <h3 class="servicio-titulo">Entrenamiento para maratón</h3>
-                    <p class="servicio-descripcion">Plan de entrenamiento personalizado para preparación de maratones y medias maratones.</p>
+                    <h3 class="servicio-titulo">Running</h3>
+                    <p class="servicio-descripcion">Preparación personalizada para carreras desde 5K hasta maratón completa. Incluye planificación de entrenamiento, técnica de carrera y estrategias de competición.</p>
                     <div class="servicio-detalles">
                         <div class="detalle">
-                            <i class="far fa-clock"></i>
-                            <span>60 minutos</span>
+                            <i class="fas fa-clock"></i>
+                            <span>60 min</span>
                         </div>
                         <div class="detalle">
                             <i class="fas fa-dollar-sign"></i>
-                            <span>$5000 / sesión</span>
+                            <span>$3,500</span>
                         </div>
                     </div>
                     <div class="servicio-acciones">
-                        <button class="btn-editar" data-id="1">
-                            <i class="fas fa-edit"></i> Editar
-                        </button>
-                        <button class="btn-despublicar" data-id="1">
-                            <i class="fas fa-eye-slash"></i> Despublicar
-                        </button>
-                        <button class="btn-eliminar" data-id="1">
-                            <i class="fas fa-trash"></i> Eliminar
-                        </button>
+                        <button class="btn-editar" data-id="1"><i class="fas fa-edit"></i> Editar</button>
+                        <button class="btn-despublicar" data-id="1"><i class="fas fa-eye-slash"></i> Ocultar</button>
+                        <button class="btn-eliminar" data-id="1"><i class="fas fa-trash"></i> Eliminar</button>
                     </div>
                 </div>
                 
@@ -240,25 +236,16 @@
             const filtroCategoria = document.getElementById('filtro-categoria');
             const buscarServicio = document.getElementById('buscar-servicio');
             
-            // Base de datos simulada de servicios
-            let servicios = [
+            // Datos de ejemplo para simular servicios
+            const serviciosIniciales = [
                 {
                     id: 1,
-                    categoria: 'Running',
-                    titulo: 'Entrenamiento para maratón',
-                    descripcion: 'Plan de entrenamiento personalizado para preparación de maratones y medias maratones.',
+                    titulo: 'Running',
+                    categoria: 'running',
+                    descripcion: 'Preparación personalizada para carreras desde 5K hasta maratón completa. Incluye planificación de entrenamiento, técnica de carrera y estrategias de competición.',
                     duracion: 60,
-                    precio: 5000,
-                    publicado: true
-                },
-                {
-                    id: 2,
-                    categoria: 'Nutrición',
-                    titulo: 'Plan nutricional deportivo',
-                    descripcion: 'Asesoramiento nutricional especializado para deportistas con objetivos específicos.',
-                    duracion: 45,
-                    precio: 4000,
-                    publicado: false
+                    precio: 3500,
+                    estado: 'publicado'
                 }
             ];
             
@@ -338,7 +325,7 @@
             
             // Función para editar un servicio
             function editarServicio(id) {
-                const servicio = servicios.find(s => s.id == id);
+                const servicio = serviciosIniciales.find(s => s.id == id);
                 if (servicio) {
                     document.getElementById('modal-titulo').textContent = 'Editar Servicio';
                     document.getElementById('servicio-id').value = servicio.id;
@@ -353,16 +340,16 @@
             
             // Función para cambiar el estado de publicación
             function togglePublicarServicio(id) {
-                const servicio = servicios.find(s => s.id == id);
+                const servicio = serviciosIniciales.find(s => s.id == id);
                 if (servicio) {
-                    servicio.publicado = !servicio.publicado;
+                    servicio.estado = servicio.estado === 'publicado' ? 'oculto' : 'publicado';
                     actualizarListaServicios();
                 }
             }
             
             // Función para confirmar eliminación
             function confirmarEliminarServicio(id) {
-                const servicio = servicios.find(s => s.id == id);
+                const servicio = serviciosIniciales.find(s => s.id == id);
                 if (servicio) {
                     document.getElementById('mensaje-confirmacion').textContent = 
                         `¿Estás seguro de que deseas eliminar el servicio "${servicio.titulo}"?`;
@@ -382,7 +369,7 @@
             
             // Función para eliminar servicio
             function eliminarServicio(id) {
-                servicios = servicios.filter(s => s.id != id);
+                serviciosIniciales = serviciosIniciales.filter(s => s.id != id);
                 actualizarListaServicios();
             }
             
@@ -438,27 +425,26 @@
                 const precio = document.getElementById('servicio-precio').value;
                 
                 const nuevoServicio = {
+                    id: servicioId ? parseInt(servicioId) : serviciosIniciales.length > 0 ? Math.max(...serviciosIniciales.map(s => s.id)) + 1 : 1,
                     categoria: categoria.charAt(0).toUpperCase() + categoria.slice(1),
                     titulo: titulo,
                     descripcion: `Servicio de ${categoria}`,
                     duracion: parseInt(duracion),
                     precio: parseInt(precio),
-                    publicado: true
+                    estado: 'publicado'
                 };
                 
                 if (servicioId) {
                     // Editar servicio existente
-                    const index = servicios.findIndex(s => s.id == servicioId);
+                    const index = serviciosIniciales.findIndex(s => s.id == servicioId);
                     if (index !== -1) {
-                        const publicado = servicios[index].publicado;
-                        nuevoServicio.id = parseInt(servicioId);
-                        nuevoServicio.publicado = publicado;
-                        servicios[index] = nuevoServicio;
+                        const publicado = serviciosIniciales[index].estado === 'publicado';
+                        nuevoServicio.estado = publicado ? 'publicado' : 'oculto';
+                        serviciosIniciales[index] = nuevoServicio;
                     }
                 } else {
                     // Crear nuevo servicio
-                    nuevoServicio.id = servicios.length > 0 ? Math.max(...servicios.map(s => s.id)) + 1 : 1;
-                    servicios.push(nuevoServicio);
+                    serviciosIniciales.push(nuevoServicio);
                 }
                 
                 actualizarListaServicios();
@@ -476,12 +462,12 @@
                 const busqueda = buscarServicio.value.toLowerCase();
                 
                 // Aplicar filtros
-                let serviciosFiltrados = [...servicios];
+                let serviciosFiltrados = [...serviciosIniciales];
                 
                 if (estadoFiltro === 'publicados') {
-                    serviciosFiltrados = serviciosFiltrados.filter(s => s.publicado);
+                    serviciosFiltrados = serviciosFiltrados.filter(s => s.estado === 'publicado');
                 } else if (estadoFiltro === 'ocultos') {
-                    serviciosFiltrados = serviciosFiltrados.filter(s => !s.publicado);
+                    serviciosFiltrados = serviciosFiltrados.filter(s => s.estado === 'oculto');
                 }
                 
                 if (categoriaFiltro !== 'todas') {
@@ -525,9 +511,9 @@
                     <div class="servicio-card" data-id="${servicio.id}">
                         <div class="servicio-header">
                             <span class="servicio-categoria">${servicio.categoria}</span>
-                            <div class="servicio-estado ${servicio.publicado ? 'publicado' : 'oculto'}">
+                            <div class="servicio-estado ${servicio.estado === 'publicado' ? 'publicado' : 'oculto'}">
                                 <span class="estado-dot"></span>
-                                <span class="estado-texto">${servicio.publicado ? 'Publicado' : 'No publicado'}</span>
+                                <span class="estado-texto">${servicio.estado === 'publicado' ? 'Publicado' : 'No publicado'}</span>
                             </div>
                         </div>
                         <h3 class="servicio-titulo">${servicio.titulo}</h3>
@@ -546,7 +532,7 @@
                             <button class="btn-editar" data-id="${servicio.id}">
                                 <i class="fas fa-edit"></i> Editar
                             </button>
-                            ${servicio.publicado ? 
+                            ${servicio.estado === 'publicado' ? 
                                 `<button class="btn-despublicar" data-id="${servicio.id}">
                                     <i class="fas fa-eye-slash"></i> Despublicar
                                 </button>` : 

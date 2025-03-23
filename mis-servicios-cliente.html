@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitConnect - Mis Servicios Contratados</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="mis-servicios-cliente.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Fit Connect</h1>
+        </div>
+        <nav class="nav">
+            <a href="index.html" class="nav-link">Inicio</a>
+            <a href="servicios-entrenador.html" class="nav-link">Servicios</a>
+            <a href="login.html" class="nav-link">Ingresar</a>
+            <a href="registro.html" class="nav-link">Registrarse</a>
+            <a href="mis-servicios-cliente.html" class="nav-link active">Mis Servicios</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="dashboard-container">
+            <div class="dashboard-header">
+                <h1 class="dashboard-title">Mis Servicios</h1>
+            </div>
+
+            <div class="tab-navigation">
+                <div class="tab-link active" data-tab="active-services">
+                    Activos <span class="badge badge-primary">3</span>
+                </div>
+                <div class="tab-link" data-tab="pending-services">
+                    Pendientes <span class="badge">1</span>
+                </div>
+                <div class="tab-link" data-tab="completed-services">
+                    Completados <span class="badge">2</span>
+                </div>
+                <div class="tab-link" data-tab="cancelled-services">
+                    Cancelados <span class="badge">0</span>
+                </div>
+            </div>
+
+            <!-- Servicios Activos -->
+            <div class="tab-content active" id="active-services">
+                <div class="services-list">
+                    <!-- Servicio activo -->
+                    <div class="service-card active">
+                        <div class="service-header">
+                            <div class="service-status active">Activo</div>
+                            <div class="service-date">Contratado: 15/09/2023</div>
+                        </div>
+                        <div class="service-content">
+                            <div class="trainer-info">
+                                <div class="trainer-photo">
+                                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Carlos Rodríguez">
+                                </div>
+                                <div class="trainer-details">
+                                    <h3 class="trainer-name">Carlos Rodríguez</h3>
+                                    <div class="trainer-rating">
+                                        <span class="stars">★★★★★</span>
+                                        <span>(4.8)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3 class="service-title">Running</h3>
+                            <p class="service-description">Preparación personalizada para carreras desde 5K hasta maratón completa. Incluye planificación de entrenamiento, técnica de carrera y estrategias de competición.</p>
+                            <div class="service-meta">
+                                <div class="service-price">$3,500 por sesión</div>
+                                <div class="service-duration"><i class="far fa-clock"></i> 60 minutos</div>
+                            </div>
+                        </div>
+                        <div class="service-actions">
+                            <button class="btn-details"><i class="fas fa-info-circle"></i> Ver detalles</button>
+                            <button class="btn-cancel"><i class="fas fa-times-circle"></i> Cancelar servicio</button>
+                        </div>
+                    </div>
+
+                    <!-- Servicio 2 -->
+                    <div class="service-card">
+                        <div class="service-status status-active">
+                            Activo
+                        </div>
+                        <div class="service-header">
+                            <div>
+                                <h3 class="service-title">Nutrición deportiva</h3>
+                                <div class="service-trainer">Entrenador: Ana García</div>
+                            </div>
+                            <div class="service-date">
+                                Inicio: 05/10/2023
+                            </div>
+                        </div>
+                        <div class="service-content">
+                            <div class="service-details">
+                                <div class="service-detail">
+                                    <span class="detail-label">Modalidad:</span>
+                                    <span class="detail-value">Online y Presencial</span>
+                                </div>
+                                <div class="service-detail">
+                                    <span class="detail-label">Sesiones:</span>
+                                    <span class="detail-value">3 de 8 completadas</span>
+                                </div>
+                                <div class="service-detail">
+                                    <span class="detail-label">Próxima sesión:</span>
+                                    <span class="detail-value">20/11/2023, 15:30</span>
+                                </div>
+                            </div>
+                            <div class="service-progress">
+                                <div class="progress-label">
+                                    <span>Progreso</span>
+                                    <span>37.5%</span>
+                                </div>
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar" style="width: 37.5%;"></div>
+                                </div>
+                            </div>
+                            <div class="service-actions">
+                                <button class="action-btn" onclick="openSharedFiles(2)">
+                                    <i class="fas fa-file-alt"></i> Archivos
+                                </button>
+                                <button class="action-btn primary">
+                                    <i class="fas fa-calendar-alt"></i> Agendar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Servicio 3 -->
+                    <div class="service-card">
+                        <div class="service-status status-active">
+                            Activo
+                        </div>
+                        <div class="service-header">
+                            <div>
+                                <h3 class="service-title">Yoga</h3>
+                                <div class="service-trainer">Entrenador: Sofía Martínez</div>
+                            </div>
+                            <div class="service-date">
+                                Inicio: 28/10/2023
+                            </div>
+                        </div>
+                        <div class="service-content">
+                            <div class="service-details">
+                                <div class="service-detail">
+                                    <span class="detail-label">Modalidad:</span>
+                                    <span class="detail-value">Online</span>
+                                </div>
+                                <div class="service-detail">
+                                    <span class="detail-label">Sesiones:</span>
+                                    <span class="detail-value">2 de 10 completadas</span>
+                                </div>
+                                <div class="service-detail">
+                                    <span class="detail-label">Próxima sesión:</span>
+                                    <span class="detail-value">18/11/2023, 10:00</span>
+                                </div>
+                            </div>
+                            <div class="service-progress">
+                                <div class="progress-label">
+                                    <span>Progreso</span>
+                                    <span>20%</span>
+                                </div>
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar" style="width: 20%;"></div>
+                                </div>
+                            </div>
+                            <div class="service-actions">
+                                <button class="action-btn" onclick="openSharedFiles(3)">
+                                    <i class="fas fa-file-alt"></i> Archivos
+                                </button>
+                                <button class="action-btn primary">
+                                    <i class="fas fa-calendar-alt"></i> Agendar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Servicios Pendientes -->
+            <div class="tab-content" id="pending-services">
+                <div class="services-list">
+                    <div class="service-card">
+                        <div class="service-status status-pending">
+                            Pendiente de aprobación
+                        </div>
+                        <div class="service-header">
+                            <div>
+                                <h3 class="service-title">Entrenamiento funcional</h3>
+                                <div class="service-trainer">Entrenador: Luis Rodríguez</div>
+                            </div>
+                            <div class="service-date">
+                                Solicitado: 15/11/2023
+                            </div>
+                        </div>
+                        <div class="service-content">
+                            <div class="service-details">
+                                <div class="service-detail">
+                                    <span class="detail-label">Modalidad:</span>
+                                    <span class="detail-value">Presencial</span>
+                                </div>
+                                <div class="service-detail">
+                                    <span class="detail-label">Sesiones:</span>
+                                    <span class="detail-value">8 sesiones</span>
+                                </div>
+                                <div class="service-detail">
+                                    <span class="detail-label">Referencia:</span>
+                                    <span class="detail-value">FC-2023-15678</span>
+                                </div>
+                            </div>
+                            <div class="service-actions">
+                                <button class="action-btn danger">
+                                    <i class="fas fa-times"></i> Cancelar solicitud
+                                </button>
+                                <button class="action-btn">
+                                    <i class="fas fa-envelope"></i> Contactar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Servicios Completados -->
+            <div class="tab-content" id="completed-services">
+                <div class="services-list">
+                    <!-- Servicio con valoración pendiente -->
+                    <div class="service-card completed">
+                        <div class="service-header">
+                            <div class="service-status completed">Completado</div>
+                            <div class="service-date">Finalizado: 01/10/2023</div>
+                        </div>
+                        <div class="service-content">
+                            <div class="trainer-info">
+                                <div class="trainer-photo">
+                                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Laura Méndez">
+                                </div>
+                                <div class="trainer-details">
+                                    <h3 class="trainer-name">Laura Méndez</h3>
+                                    <div class="trainer-rating">
+                                        <span class="stars">★★★★★</span>
+                                        <span>(4.5)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3 class="service-title">Nutrición</h3>
+                            <p class="service-description">Asesoramiento nutricional especializado para deportistas con objetivos específicos. Incluye evaluación inicial, plan personalizado y seguimiento.</p>
+                            <div class="service-meta">
+                                <div class="service-price">$4,200 por sesión</div>
+                                <div class="service-duration"><i class="far fa-clock"></i> 90 minutos</div>
+                            </div>
+                        </div>
+                        <div class="service-actions">
+                            <button class="btn-details"><i class="fas fa-info-circle"></i> Ver detalles</button>
+                            <button class="btn-rate"><i class="fas fa-star"></i> Valorar servicio</button>
+                        </div>
+                    </div>
+
+                    <!-- Servicio completado 2 -->
+                    <div class="service-card">
+                        <div class="service-status status-completed">
+                            Completado
+                        </div>
+                        <div class="service-header">
+                            <div>
+                                <h3 class="service-title">Entrenamiento para principiantes</h3>
+                                <div class="service-trainer">Entrenador: Juan Pérez</div>
+                            </div>
+                            <div class="service-date">
+                                Completado: 01/10/2023
+                            </div>
+                        </div>
+                        <div class="service-content">
+                            <div class="service-details">
+                                <div class="service-detail">
+                                    <span class="detail-label">Modalidad:</span>
+                                    <span class="detail-value">Presencial</span>
+                                </div>
+                                <div class="service-detail">
+                                    <span class="detail-label">Sesiones:</span>
+                                    <span class="detail-value">4 de 4 completadas</span>
+                                </div>
+                                <div class="service-detail">
+                                    <span class="detail-label">Tu calificación:</span>
+                                    <span class="detail-value">
+                                        <span style="color: #FFD700;">★★★★★</span> 5.0
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="service-actions">
+                                <button class="action-btn" onclick="openSharedFiles(5)">
+                                    <i class="fas fa-file-alt"></i> Archivos
+                                </button>
+                                <button class="action-btn primary">
+                                    <i class="fas fa-redo"></i> Contratar de nuevo
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Servicios Cancelados -->
+            <div class="tab-content" id="cancelled-services">
+                <div class="empty-state">
+                    <i class="fas fa-calendar-times"></i>
+                    <h3>No tienes servicios cancelados</h3>
+                    <p>Cuando canceles un servicio, aparecerá en esta sección.</p>
+                    <a href="index.html" class="btn-primary">Explorar servicios</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para archivos compartidos -->
+        <div class="modal" id="shared-files-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Archivos compartidos</h2>
+                    <button class="modal-close" onclick="closeModal()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <ul class="shared-files-list" id="files-list">
+                        <!-- Los archivos se cargan dinámicamente con JavaScript -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Fit Connect</h3>
+                <p>Conectamos entrenadores personales con clientes de forma fácil y efectiva.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Enlaces rápidos</h3>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="servicios-entrenador.html">Servicios</a></li>
+                    <li><a href="login.html">Ingresar</a></li>
+                    <li><a href="registro.html">Registrarse</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <p>Email: info@fitconnect.com</p>
+                <p>Teléfono: +54 11 1234-5678</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Fit Connect - Todos los derechos reservados</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Manejo de pestañas
+            const tabLinks = document.querySelectorAll('.tab-link');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabLinks.forEach(tabLink => {
+                tabLink.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Desactivar todas las pestañas
+                    tabLinks.forEach(link => link.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Activar la pestaña seleccionada
+                    this.classList.add('active');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+        });
+
+        // Base de datos simulada de archivos compartidos
+        const sharedFilesData = {
+            1: [
+                { id: 1, name: 'Plan de entrenamiento semanal.pdf', type: 'pdf', size: '2.3 MB', date: '15/10/2023', icon: 'fa-file-pdf' },
+                { id: 2, name: 'Rutina de calentamiento.docx', type: 'docx', size: '1.1 MB', date: '18/10/2023', icon: 'fa-file-word' },
+                { id: 3, name: 'Seguimiento de progreso Octubre.xlsx', type: 'xlsx', size: '0.9 MB', date: '01/11/2023', icon: 'fa-file-excel' },
+                { id: 4, name: 'Ejercicios de estiramiento.mp4', type: 'mp4', size: '15.7 MB', date: '05/11/2023', icon: 'fa-file-video' }
+            ],
+            2: [
+                { id: 5, name: 'Plan nutricional personalizado.pdf', type: 'pdf', size: '3.1 MB', date: '07/10/2023', icon: 'fa-file-pdf' },
+                { id: 6, name: 'Recetario saludable.pdf', type: 'pdf', size: '5.2 MB', date: '12/10/2023', icon: 'fa-file-pdf' },
+                { id: 7, name: 'Control de alimentación.xlsx', type: 'xlsx', size: '0.8 MB', date: '20/10/2023', icon: 'fa-file-excel' }
+            ],
+            3: [
+                { id: 8, name: 'Poses de yoga para principiantes.pdf', type: 'pdf', size: '4.5 MB', date: '30/10/2023', icon: 'fa-file-pdf' },
+                { id: 9, name: 'Técnicas de respiración.mp4', type: 'mp4', size: '18.2 MB', date: '05/11/2023', icon: 'fa-file-video' }
+            ],
+            4: [
+                { id: 10, name: 'Guía de ejercicios para continuar.pdf', type: 'pdf', size: '2.8 MB', date: '10/11/2023', icon: 'fa-file-pdf' },
+                { id: 11, name: 'Certificado de finalización.pdf', type: 'pdf', size: '0.5 MB', date: '10/11/2023', icon: 'fa-file-pdf' }
+            ],
+            5: [
+                { id: 12, name: 'Resumen de entrenamiento.pdf', type: 'pdf', size: '1.9 MB', date: '01/10/2023', icon: 'fa-file-pdf' },
+                { id: 13, name: 'Recomendaciones para avanzar.docx', type: 'docx', size: '1.3 MB', date: '01/10/2023', icon: 'fa-file-word' }
+            ]
+        };
+
+        // Función para abrir el modal de archivos compartidos
+        function openSharedFiles(serviceId) {
+            const modal = document.getElementById('shared-files-modal');
+            const filesList = document.getElementById('files-list');
+            
+            // Limpiar lista anterior
+            filesList.innerHTML = '';
+            
+            // Obtener los archivos para este servicio
+            const files = sharedFilesData[serviceId] || [];
+            
+            if (files.length === 0) {
+                filesList.innerHTML = '<div class="empty-state"><p>No hay archivos compartidos para este servicio.</p></div>';
+            } else {
+                // Agregar archivos a la lista
+                files.forEach(file => {
+                    const li = document.createElement('li');
+                    li.className = 'shared-file';
+                    li.innerHTML = `
+                        <div class="file-icon">
+                            <i class="far ${file.icon}"></i>
+                        </div>
+                        <div class="file-info">
+                            <h4 class="file-name">${file.name}</h4>
+                            <div class="file-meta">
+                                <span>${file.size} • Compartido el ${file.date}</span>
+                            </div>
+                        </div>
+                        <div class="file-actions">
+                            <a href="#" onclick="downloadFile(${file.id}); return false;">Descargar</a>
+                        </div>
+                    `;
+                    filesList.appendChild(li);
+                });
+            }
+            
+            // Mostrar modal
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevenir scroll del body
+        }
+
+        // Función para cerrar el modal
+        function closeModal() {
+            const modal = document.getElementById('shared-files-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = ''; // Restaurar scroll
+        }
+
+        // Función para simular descarga de archivo
+        function downloadFile(fileId) {
+            alert('Descargando archivo. En un sistema real, el archivo se descargaría ahora.');
+        }
+
+        // Cerrar modal al hacer clic en el fondo
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('shared-files-modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html> 

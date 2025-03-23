@@ -3,18 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FitMarket - Encuentra tu entrenador</title>
+    <title>FitConnect - Conectando entrenadores y clientes</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
     <!-- Encabezado -->
-    <header class="header">
+    <header>
         <div class="container">
             <div class="header-content">
-                <a href="index.html" class="logo-link">
-                    <div class="logo">FitMarket</div>
-                </a>
+                <div class="logo">
+                    <a href="index.html">FitConnect</a>
+                </div>
                 <nav class="nav">
                     <a href="index.html" class="nav-link active">Inicio</a>
                     <a href="login.html" class="nav-link">Ingresar</a>
@@ -37,9 +39,9 @@
                     <div class="filter-section">
                         <h3 class="filter-title">Categoría</h3>
                         <div class="filter-buttons">
-                            <button type="button" class="filter-btn" data-filter="categoria" data-value="entrenamiento-maraton">Entrenamiento para maratón</button>
-                            <button type="button" class="filter-btn" data-filter="categoria" data-value="nutricion-deportiva">Nutrición deportiva</button>
-                            <button type="button" class="filter-btn" data-filter="categoria" data-value="entrenamiento-funcional">Entrenamiento funcional</button>
+                            <button type="button" class="filter-btn" data-filter="categoria" data-value="running">Running</button>
+                            <button type="button" class="filter-btn" data-filter="categoria" data-value="gimnasio">Gimnasio</button>
+                            <button type="button" class="filter-btn" data-filter="categoria" data-value="nutricion">Nutrición</button>
                             <button type="button" class="filter-btn" data-filter="categoria" data-value="yoga">Yoga</button>
                             <button type="button" class="filter-btn" data-filter="categoria" data-value="pilates">Pilates</button>
                         </div>
@@ -121,131 +123,179 @@
     <!-- Listado de Entrenadores -->
     <main class="trainers-list">
         <div class="container">
-            <div class="trainer-card">
-                <div class="trainer-header">
-                    <h3>Carlos Pérez</h3>
-                    <div class="rating">⭐ 4.5 (78)</div>
+            <!-- Tarjeta de entrenador 1 -->
+            <div class="trainer-card" data-categoria="running" data-idioma="espanol" data-modalidad="virtual" data-zona="palermo" data-precio="3500" data-duracion="60" data-calificacion="4.8">
+                <div class="card-top">
+                    <div class="trainer-img">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Carlos Rodríguez">
+                    </div>
+                    <div class="category-tag">Running</div>
                 </div>
-                <p class="category">Entrenamiento para maratón</p>
-                <p class="description">Entrenamiento personalizado para preparación de carreras, desde 5K hasta maratones completas.</p>
-                <div class="price">$3500/sesión</div>
-                <div class="badges">
-                    <span class="badge virtual">Virtual</span>
-                    <span class="badge presencial">Palermo</span>
-                    <span class="badge idioma">Español</span>
-                </div>
-                <div class="reviews">
-                    <h4>Comentarios</h4>
-                    <div class="review-item">
-                        <div class="review-header">
-                            <span class="reviewer">María García</span>
-                            <span class="review-rating">⭐⭐⭐⭐⭐</span>
+                <div class="card-body">
+                    <div class="trainer-header">
+                        <h3>Carlos Rodríguez</h3>
+                        <div class="rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="rating-value">4.8</span>
                         </div>
-                        <p>Excelente entrenamiento. Me gustó mucho la planificación personalizada y el seguimiento constante.</p>
+                    </div>
+                    <div class="review-count">(45 opiniones)</div>
+                    <div class="badge-container">
+                        <span class="badge virtual">Virtual</span>
+                        <span class="badge-location">Palermo</span>
+                        <span class="badge-idioma">ES</span>
+                    </div>
+                    <div class="session-info">
+                        <div class="price-info">
+                            <strong>$3,500</strong> 
+                            <span class="session-text">por sesión</span>
+                        </div>
+                        <div class="duration">
+                            <i class="far fa-clock"></i> 60 min
+                        </div>
                     </div>
                 </div>
+                <a href="contratar-servicio.html" class="btn-contratar">CONTRATAR</a>
             </div>
-
-            <!-- Otro ejemplo de entrenador -->
-            <div class="trainer-card">
-                <div class="trainer-header">
-                    <h3>Ana Rodríguez</h3>
-                    <div class="rating">⭐ 5.0 (32)</div>
+            
+            <!-- Tarjeta de entrenador 2 -->
+            <div class="trainer-card" data-categoria="nutricion" data-idioma="ingles,espanol" data-modalidad="presencial" data-zona="recoleta" data-precio="4200" data-duracion="90" data-calificacion="4.5">
+                <div class="card-top">
+                    <div class="trainer-img">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Laura Méndez">
+                    </div>
+                    <div class="category-tag">Nutrición</div>
                 </div>
-                <p class="category">Nutrición deportiva</p>
-                <p class="description">Planes de alimentación personalizados para deportistas, optimización de rendimiento y recuperación.</p>
-                <div class="price">$2800/consulta</div>
-                <div class="badges">
-                    <span class="badge virtual">Virtual</span>
-                    <span class="badge presencial">Belgrano</span>
-                    <span class="badge idioma">Español, Inglés</span>
-                </div>
-                <div class="reviews">
-                    <h4>Comentarios</h4>
-                    <div class="review-item">
-                        <div class="review-header">
-                            <span class="reviewer">Carlos Sánchez</span>
-                            <span class="review-rating">⭐⭐⭐⭐</span>
+                <div class="card-body">
+                    <div class="trainer-header">
+                        <h3>Laura Méndez</h3>
+                        <div class="rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="rating-value">4.5</span>
                         </div>
-                        <p>El plan nutricional ha sido muy efectivo para mi rendimiento deportivo. Me gustaría que hubiera más opciones para intolerantes a la lactosa.</p>
+                    </div>
+                    <div class="review-count">(32 opiniones)</div>
+                    <div class="badge-container">
+                        <span class="badge presencial">Presencial</span>
+                        <span class="badge-location">Recoleta</span>
+                        <span class="badge-idioma">ES/EN</span>
+                    </div>
+                    <div class="session-info">
+                        <div class="price-info">
+                            <strong>$4,200</strong> 
+                            <span class="session-text">por sesión</span>
+                        </div>
+                        <div class="duration">
+                            <i class="far fa-clock"></i> 90 min
+                        </div>
                     </div>
                 </div>
+                <a href="contratar-servicio.html" class="btn-contratar">CONTRATAR</a>
             </div>
-
-            <!-- Tercer entrenador -->
-            <div class="trainer-card">
-                <div class="trainer-header">
-                    <h3>Diego Martínez</h3>
-                    <div class="rating">⭐ 4.0 (15)</div>
+            
+            <!-- Tarjeta de entrenador 3 -->
+            <div class="trainer-card" data-categoria="gimnasio" data-idioma="espanol" data-modalidad="presencial,virtual" data-zona="belgrano" data-precio="3800" data-duracion="75" data-calificacion="4.2">
+                <div class="card-top">
+                    <div class="trainer-img">
+                        <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Miguel Fernández">
+                    </div>
+                    <div class="category-tag">Gimnasio</div>
                 </div>
-                <p class="category">Entrenamiento funcional</p>
-                <p class="description">Sesiones de alta intensidad para mejorar fuerza, resistencia y movilidad con ejercicios funcionales.</p>
-                <div class="price">$2500/sesión</div>
-                <div class="badges">
-                    <span class="badge presencial">Villa Crespo</span>
-                    <span class="badge idioma">Español</span>
-                </div>
-                <div class="reviews">
-                    <h4>Comentarios</h4>
-                    <div class="review-item">
-                        <div class="review-header">
-                            <span class="reviewer">Laura Martínez</span>
-                            <span class="review-rating">⭐⭐</span>
+                <div class="card-body">
+                    <div class="trainer-header">
+                        <h3>Miguel Fernández</h3>
+                        <div class="rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="rating-value">4.2</span>
                         </div>
-                        <p>La sesión fue demasiado intensa para mi nivel. Sentí que no se adaptó bien a mis necesidades como principiante.</p>
+                    </div>
+                    <div class="review-count">(75 opiniones)</div>
+                    <div class="badge-container">
+                        <span class="badge presencial">Presencial</span>
+                        <span class="badge-location">Belgrano</span>
+                        <span class="badge-idioma">ES</span>
+                    </div>
+                    <div class="session-info">
+                        <div class="price-info">
+                            <strong>$3,800</strong> 
+                            <span class="session-text">por sesión</span>
+                        </div>
+                        <div class="duration">
+                            <i class="far fa-clock"></i> 75 min
+                        </div>
                     </div>
                 </div>
+                <a href="contratar-servicio.html" class="btn-contratar">CONTRATAR</a>
             </div>
 
             <!-- Cuarto entrenador -->
-            <div class="trainer-card">
-                <div class="trainer-header">
-                    <h3>Laura González</h3>
-                    <div class="rating">⭐ 4.9 (85)</div>
+            <div class="trainer-card" data-categoria="yoga" data-idioma="espanol,ingles" data-modalidad="virtual" data-zona="palermo" data-precio="2200" data-duracion="60" data-calificacion="4.9">
+                <div class="card-top">
+                    <div class="trainer-img">
+                        <img src="https://randomuser.me/api/portraits/women/28.jpg" alt="Laura González">
+                    </div>
+                    <div class="category-tag">Yoga</div>
                 </div>
-                <p class="category">Yoga</p>
-                <p class="description">Clases personalizadas para todos los niveles, enfoque en flexibilidad, equilibrio y relajación mental.</p>
-                <div class="price">$2200/sesión</div>
-                <div class="badges">
-                    <span class="badge virtual">Virtual</span>
-                    <span class="badge presencial">Palermo</span>
-                    <span class="badge idioma">Español, Inglés</span>
-                </div>
-                <div class="reviews">
-                    <h4>Comentarios</h4>
-                    <div class="review-item">
-                        <div class="review-header">
-                            <span class="reviewer">Ana P.</span>
-                            <span class="review-rating">⭐⭐⭐⭐⭐</span>
+                <div class="card-body">
+                    <div class="trainer-header">
+                        <h3>Laura González</h3>
+                        <div class="rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="rating-value">4.9</span>
                         </div>
-                        <p>Laura es una excelente instructora. Sus clases me han ayudado mucho con mi dolor de espalda.</p>
+                    </div>
+                    <div class="review-count">(85 opiniones)</div>
+                    <div class="badge-container">
+                        <span class="badge virtual">Virtual</span>
+                        <span class="badge-location">Palermo</span>
+                        <span class="badge-idioma">ES/EN</span>
+                    </div>
+                    <div class="session-info">
+                        <div class="price-info">
+                            <strong>$2,200</strong> 
+                            <span class="session-text">por sesión</span>
+                        </div>
+                        <div class="duration">
+                            <i class="far fa-clock"></i> 60 min
+                        </div>
                     </div>
                 </div>
+                <a href="contratar-servicio.html" class="btn-contratar">CONTRATAR</a>
             </div>
 
             <!-- Quinto entrenador -->
-            <div class="trainer-card">
-                <div class="trainer-header">
-                    <h3>Martín Suárez</h3>
-                    <div class="rating">⭐ 4.7 (62)</div>
+            <div class="trainer-card" data-categoria="pilates" data-idioma="espanol" data-modalidad="presencial" data-zona="recoleta" data-precio="2400" data-duracion="60" data-calificacion="4.7">
+                <div class="card-top">
+                    <div class="trainer-img">
+                        <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Martín Suárez">
+                    </div>
+                    <div class="category-tag">Pilates</div>
                 </div>
-                <p class="category">Pilates</p>
-                <p class="description">Sesiones enfocadas en fortalecer el core, mejorar la postura y aumentar la flexibilidad con ejercicios controlados.</p>
-                <div class="price">$2400/sesión</div>
-                <div class="badges">
-                    <span class="badge presencial">Recoleta</span>
-                    <span class="badge idioma">Español</span>
-                </div>
-                <div class="reviews">
-                    <h4>Comentarios</h4>
-                    <div class="review-item">
-                        <div class="review-header">
-                            <span class="reviewer">Julia M.</span>
-                            <span class="review-rating">⭐⭐⭐⭐⭐</span>
+                <div class="card-body">
+                    <div class="trainer-header">
+                        <h3>Martín Suárez</h3>
+                        <div class="rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="rating-value">4.7</span>
                         </div>
-                        <p>Las clases de Martín son excelentes. He notado una gran mejora en mi postura y flexibilidad desde que comencé.</p>
+                    </div>
+                    <div class="review-count">(62 opiniones)</div>
+                    <div class="badge-container">
+                        <span class="badge presencial">Presencial</span>
+                        <span class="badge-location">Recoleta</span>
+                        <span class="badge-idioma">ES</span>
+                    </div>
+                    <div class="session-info">
+                        <div class="price-info">
+                            <strong>$2,400</strong> 
+                            <span class="session-text">por sesión</span>
+                        </div>
+                        <div class="duration">
+                            <i class="far fa-clock"></i> 60 min
+                        </div>
                     </div>
                 </div>
+                <a href="contratar-servicio.html" class="btn-contratar">CONTRATAR</a>
             </div>
         </div>
     </main>
