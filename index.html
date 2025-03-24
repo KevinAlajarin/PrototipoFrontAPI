@@ -31,11 +31,16 @@
     <!-- Sección de Búsqueda -->
     <section class="search-section">
         <div class="container">
-            <h1>Encuentra tu entrenador ideal</h1>
+            <div class="search-header">
+                <h1>Encuentra tu entrenador ideal</h1>
+                <button id="toggle-filters" class="btn-toggle-filters">
+                    <i class="fas fa-filter"></i> <span>Mostrar filtros</span>
+                </button>
+            </div>
             
             <div class="filter-container">
                 <!-- Filtros con botones -->
-                <div class="filters-panel visible">
+                <div id="filters-panel" class="filters-panel collapsed">
                     <div class="filter-section">
                         <h3 class="filter-title">Categoría</h3>
                         <div class="filter-buttons">
@@ -400,43 +405,44 @@
             // Agregar evento a todos los botones de filtro
             filterButtons.forEach(button => {
                 button.addEventListener('click', function() {
+                    // Obtener los datos del filtro
                     const filterType = this.dataset.filter;
                     const filterValue = this.dataset.value;
                     
-                    // Manejo especial para zona (selección múltiple hasta 3)
+                    // Si es un filtro de zona, permitir selección múltiple
                     if (filterType === 'zona') {
-                        if (this.classList.contains('active')) {
-                            // Si ya está activo, quitarlo de la selección
+                        // Si ya está seleccionado, deseleccionar
+                        const index = filtrosActivos.zona.indexOf(filterValue);
+                        if (index !== -1) {
+                            filtrosActivos.zona.splice(index, 1);
                             this.classList.remove('active');
-                            filtrosActivos.zona = filtrosActivos.zona.filter(z => z !== filterValue);
-                        } else {
-                            // Si no está activo y no hemos alcanzado el máximo, añadirlo
-                            if (filtrosActivos.zona.length < MAX_ZONAS) {
-                                this.classList.add('active');
-                                filtrosActivos.zona.push(filterValue);
-                            } else {
-                                // Si ya tenemos el máximo, mostrar una alerta
-                                alert('Solo puedes seleccionar hasta 3 zonas');
-                            }
-                        }
-                    } else {
-                        // Para el resto de filtros, comportamiento estándar (selección única)
-                        if (this.classList.contains('active')) {
-                            this.classList.remove('active');
-                            filtrosActivos[filterType] = null;
-                        } else {
-                            // Desactivar otros botones del mismo tipo
-                            document.querySelectorAll(`.filter-btn[data-filter="${filterType}"]`).forEach(btn => {
-                                btn.classList.remove('active');
-                            });
-                            
-                            // Activar este botón
+                        } 
+                        // Si no está seleccionado y no supera el máximo, seleccionar
+                        else if (filtrosActivos.zona.length < MAX_ZONAS) {
+                            filtrosActivos.zona.push(filterValue);
                             this.classList.add('active');
+                        }
+                    } 
+                    // Para los demás filtros, solo uno activo a la vez
+                    else {
+                        // Si es el mismo que está activo, deseleccionar
+                        if (filtrosActivos[filterType] === filterValue) {
+                            filtrosActivos[filterType] = null;
+                            this.classList.remove('active');
+                        } 
+                        // Si es diferente, seleccionar y deseleccionar el anterior
+                        else {
+                            // Deseleccionar el botón anterior (si existe)
+                            if (filtrosActivos[filterType]) {
+                                document.querySelector(`.filter-btn[data-filter="${filterType}"][data-value="${filtrosActivos[filterType]}"]`).classList.remove('active');
+                            }
+                            
                             filtrosActivos[filterType] = filterValue;
+                            this.classList.add('active');
                         }
                     }
                     
-                    // Aplicar filtros inmediatamente
+                    // Aplicar filtros a las tarjetas
                     aplicarFiltros();
                 });
             });
@@ -444,46 +450,156 @@
             // Agregar evento a los selectores de ordenamiento
             sortSelects.forEach(select => {
                 select.addEventListener('change', function() {
-                    filtrosActivos[this.id] = this.value;
+                    const sortType = this.id.replace('orden', '').toLowerCase();
+                    filtrosActivos[`orden${sortType}`] = this.value;
+                    
+                    // Aplicar filtros a las tarjetas
                     aplicarFiltros();
                 });
             });
             
-            // Limpiar filtros
-            clearFilterBtn.addEventListener('click', function() {
-                // Limpiar estado de filtros
-                Object.keys(filtrosActivos).forEach(key => {
-                    if (key === 'zona') {
-                        filtrosActivos[key] = []; // Para zona, inicializar como array vacío
-                    } else {
-                        filtrosActivos[key] = null;
-                    }
-                });
-                
-                // Desactivar todos los botones
-                filterButtons.forEach(btn => {
-                    btn.classList.remove('active');
-                });
-                
-                // Resetear los selectores
-                sortSelects.forEach(select => {
-                    select.value = '';
-                });
-                
-                // Aplicar filtros (mostrar todos)
-                aplicarFiltros();
-            });
-            
             // Función para aplicar los filtros
             function aplicarFiltros() {
-                console.log('Filtros aplicados:', filtrosActivos);
+                const cards = document.querySelectorAll('.trainer-card');
                 
-                // Aquí iría el código para filtrar los resultados según filtrosActivos
-                // Por ejemplo, ocultar/mostrar las tarjetas según los criterios
+                cards.forEach(card => {
+                    let visible = true;
+                    
+                    // Filtrar por categoría
+                    if (filtrosActivos.categoria && card.dataset.categoria !== filtrosActivos.categoria) {
+                        visible = false;
+                    }
+                    
+                    // Filtrar por idioma
+                    if (visible && filtrosActivos.idioma) {
+                        const idiomasCard = card.dataset.idioma.split(',');
+                        if (!idiomasCard.includes(filtrosActivos.idioma)) {
+                            visible = false;
+                        }
+                    }
+                    
+                    // Filtrar por modalidad
+                    if (visible && filtrosActivos.modalidad) {
+                        const modalidadesCard = card.dataset.modalidad.split(',');
+                        if (!modalidadesCard.includes(filtrosActivos.modalidad)) {
+                            visible = false;
+                        }
+                    }
+                    
+                    // Filtrar por zona
+                    if (visible && filtrosActivos.zona.length > 0) {
+                        const zonasCard = card.dataset.zona.split(',');
+                        let zonaMatch = false;
+                        
+                        filtrosActivos.zona.forEach(zona => {
+                            if (zonasCard.includes(zona)) {
+                                zonaMatch = true;
+                            }
+                        });
+                        
+                        if (!zonaMatch) {
+                            visible = false;
+                        }
+                    }
+                    
+                    // Mostrar u ocultar la tarjeta
+                    card.style.display = visible ? 'flex' : 'none';
+                });
                 
-                // Este es un ejemplo simple, en una aplicación real
-                // probablemente harías una llamada AJAX para obtener resultados filtrados
+                // Ordenar tarjetas visibles
+                ordenarTarjetas();
             }
+            
+            // Función para ordenar las tarjetas
+            function ordenarTarjetas() {
+                const container = document.querySelector('.trainers-list .container');
+                const cards = Array.from(document.querySelectorAll('.trainer-card[style="display: flex;"]'));
+                
+                // Si no hay tarjetas visibles o no hay ordenamiento, no hacer nada
+                if (cards.length === 0 || (!filtrosActivos.ordenPrecio && !filtrosActivos.ordenDuracion && !filtrosActivos.ordenCalificacion)) {
+                    return;
+                }
+                
+                // Ordenar por precio
+                if (filtrosActivos.ordenPrecio) {
+                    cards.sort((a, b) => {
+                        const precioA = parseInt(a.dataset.precio);
+                        const precioB = parseInt(b.dataset.precio);
+                        
+                        return filtrosActivos.ordenPrecio === 'asc' ? precioA - precioB : precioB - precioA;
+                    });
+                }
+                
+                // Ordenar por duración
+                if (filtrosActivos.ordenDuracion) {
+                    cards.sort((a, b) => {
+                        const duracionA = parseInt(a.dataset.duracion);
+                        const duracionB = parseInt(b.dataset.duracion);
+                        
+                        return filtrosActivos.ordenDuracion === 'asc' ? duracionA - duracionB : duracionB - duracionA;
+                    });
+                }
+                
+                // Ordenar por calificación
+                if (filtrosActivos.ordenCalificacion) {
+                    cards.sort((a, b) => {
+                        const calificacionA = parseFloat(a.dataset.calificacion);
+                        const calificacionB = parseFloat(b.dataset.calificacion);
+                        
+                        return filtrosActivos.ordenCalificacion === 'asc' ? calificacionA - calificacionB : calificacionB - calificacionA;
+                    });
+                }
+                
+                // Reordenar en el DOM
+                cards.forEach(card => {
+                    container.appendChild(card);
+                });
+            }
+            
+            // Botón para limpiar filtros
+            if (clearFilterBtn) {
+                clearFilterBtn.addEventListener('click', function() {
+                    // Reiniciar estado de filtros
+                    filtrosActivos.categoria = null;
+                    filtrosActivos.idioma = null;
+                    filtrosActivos.modalidad = null;
+                    filtrosActivos.zona = [];
+                    filtrosActivos.ordenPrecio = null;
+                    filtrosActivos.ordenDuracion = null;
+                    filtrosActivos.ordenCalificacion = null;
+                    
+                    // Reiniciar UI
+                    document.querySelectorAll('.filter-btn.active').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    
+                    document.querySelectorAll('.sort-select').forEach(select => {
+                        select.selectedIndex = 0;
+                    });
+                    
+                    // Mostrar todas las tarjetas
+                    document.querySelectorAll('.trainer-card').forEach(card => {
+                        card.style.display = 'flex';
+                    });
+                });
+            }
+            
+            // Toggle para mostrar/ocultar panel de filtros
+            const toggleFiltersBtn = document.getElementById('toggle-filters');
+            const filtersPanel = document.getElementById('filters-panel');
+            
+            toggleFiltersBtn.addEventListener('click', function() {
+                filtersPanel.classList.toggle('collapsed');
+                this.classList.toggle('active');
+                
+                // Cambiar texto del botón según estado
+                const buttonText = this.querySelector('span');
+                if (filtersPanel.classList.contains('collapsed')) {
+                    buttonText.textContent = 'Mostrar filtros';
+                } else {
+                    buttonText.textContent = 'Ocultar filtros';
+                }
+            });
         });
     </script>
 </body>

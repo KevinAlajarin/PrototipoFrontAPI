@@ -8,11 +8,175 @@
     <link rel="stylesheet" href="common.css">
     <link rel="stylesheet" href="contratar-servicio.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Estilos para corregir los problemas solicitados */
+        /* 1. Arreglar línea del paso 1 al 2 */
+        .step:not(:last-child)::after {
+            z-index: 0; /* Cambiamos el z-index para que esté detrás del texto */
+            top: 15px; /* Ajustamos la posición para que no esté sobre el texto */
+        }
+        
+        /* 2. Ajustar los botones de navegación como en otros HTMLs */
+        .nav {
+            display: flex;
+            justify-content: flex-end; /* Alinear a la derecha */
+        }
+        
+        .nav-link {
+            color: #333;
+            text-decoration: none;
+            padding: 10px 15px;
+            margin-left: 5px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            background-color: #4285F4; /* Sombreado celeste */
+            color: white;
+        }
+        
+        /* 3. Mejorar legibilidad de los hipervínculos */
+        footer a {
+            color: #4285F4; /* Color más claro y legible */
+            font-weight: bold;
+        }
+        
+        .back-link a {
+            color: #4285F4;
+            font-weight: bold;
+        }
+        
+        .confirmation-actions a, .checkout-actions a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        /* Nuevos estilos para el header y logo */
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo h1 {
+            font-size: 24px;
+            color: #4285F4;
+            margin: 0;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background-color: #f8f9fa; /* Cambiado a gris claro para coincidir con el index */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Mejora de contraste en el footer */
+        footer {
+            background-color: #2d3748; /* Fondo oscuro del footer */
+            color: #f7fafc;
+        }
+        
+        footer a {
+            color: #63b3ed; /* Azul más claro para mejor contraste */
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        
+        footer a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        .footer-bottom {
+            background-color: #1a202c; /* Más oscuro para el bottom footer */
+            color: #cbd5e0;
+        }
+        
+        /* Nuevo diseño para los pasos */
+        .checkout-progress {
+            margin: 30px 0;
+            padding: 0 20px;
+        }
+        
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+        .progress-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 33.33%;
+            position: relative;
+        }
+        
+        .progress-step-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            font-weight: bold;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+        
+        .progress-step.active .progress-step-circle {
+            background-color: #4285F4;
+            color: white;
+        }
+        
+        .progress-step.completed .progress-step-circle {
+            background-color: #28a745;
+            color: white;
+        }
+        
+        .progress-step-text {
+            font-size: 14px;
+            color: #6c757d;
+            text-align: center;
+        }
+        
+        .progress-step.active .progress-step-text {
+            color: #4285F4;
+            font-weight: bold;
+        }
+        
+        .progress-step.completed .progress-step-text {
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .progress-bar {
+            height: 4px;
+            background-color: #e9ecef;
+            width: 100%;
+            margin-top: 25px;
+            position: relative;
+        }
+        
+        .progress-bar-fill {
+            height: 100%;
+            background-color: #4285F4;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+    </style>
 </head>
 <body>
     <header>
         <div class="logo">
-            <h1>Fit Connect</h1>
+            <h1>FitConnect</h1>
         </div>
         <nav class="nav">
             <a href="index.html" class="nav-link">Inicio</a>
@@ -25,19 +189,24 @@
 
     <main>
         <div class="checkout-container">
-            <!-- Pasos del checkout -->
-            <div class="checkout-steps">
-                <div class="step active" id="step-1">
-                    <div class="step-number">1</div>
-                    <span class="step-text">Revisar servicio</span>
+            <!-- Nuevo diseño para los pasos -->
+            <div class="checkout-progress">
+                <div class="progress-steps">
+                    <div class="progress-step active" id="step-1">
+                        <div class="progress-step-circle">1</div>
+                        <div class="progress-step-text">Revisar servicio</div>
+                    </div>
+                    <div class="progress-step" id="step-2">
+                        <div class="progress-step-circle">2</div>
+                        <div class="progress-step-text">Datos de pago</div>
+                    </div>
+                    <div class="progress-step" id="step-3">
+                        <div class="progress-step-circle">3</div>
+                        <div class="progress-step-text">Confirmación</div>
+                    </div>
                 </div>
-                <div class="step" id="step-2">
-                    <div class="step-number">2</div>
-                    <span class="step-text">Datos de pago</span>
-                </div>
-                <div class="step" id="step-3">
-                    <div class="step-number">3</div>
-                    <span class="step-text">Confirmación</span>
+                <div class="progress-bar">
+                    <div class="progress-bar-fill" id="progress-fill"></div>
                 </div>
             </div>
 
@@ -279,6 +448,7 @@
             const step1Content = document.getElementById('step-1-content');
             const step2Content = document.getElementById('step-2-content');
             const step3Content = document.getElementById('step-3-content');
+            const progressFill = document.getElementById('progress-fill');
             
             // Botones de navegación
             const gotoStep2Btn = document.getElementById('goto-step-2');
@@ -298,8 +468,21 @@
             // Precio por sesión
             const pricePerSession = 3500;
             
+            // Función para actualizar el progreso
+            function updateProgress(stepNum) {
+                if (stepNum === 1) {
+                    progressFill.style.width = "0%";
+                } else if (stepNum === 2) {
+                    progressFill.style.width = "50%";
+                } else if (stepNum === 3) {
+                    progressFill.style.width = "100%";
+                }
+            }
+            
             // Función para actualizar el precio total
             function updateTotalPrice() {
+                if (!sessionsCount) return;
+                
                 const sessions = parseInt(sessionsCount.value);
                 const total = sessions * pricePerSession;
                 totalPrice.textContent = `$${total.toLocaleString()} ARS`;
@@ -310,120 +493,142 @@
                 
                 // Actualizar opciones de cuotas
                 const installmentsSelect = document.getElementById('card-installments');
-                installmentsSelect.innerHTML = '';
-                
-                [1, 3, 6, 12].forEach(installment => {
-                    const installmentAmount = Math.ceil(total * (installment === 1 ? 1 : 1.02 + (installment * 0.01)) / installment);
-                    const option = document.createElement('option');
-                    option.value = installment;
-                    option.textContent = `${installment} ${installment === 1 ? 'cuota' : 'cuotas'} de $${installmentAmount.toLocaleString()} ARS`;
-                    installmentsSelect.appendChild(option);
-                });
+                if (installmentsSelect) {
+                    installmentsSelect.innerHTML = '';
+                    
+                    [1, 3, 6, 12].forEach(installment => {
+                        const installmentAmount = Math.ceil(total * (installment === 1 ? 1 : 1.02 + (installment * 0.01)) / installment);
+                        const option = document.createElement('option');
+                        option.value = installment;
+                        option.textContent = `${installment} ${installment === 1 ? 'cuota' : 'cuotas'} de $${installmentAmount.toLocaleString()} ARS`;
+                        installmentsSelect.appendChild(option);
+                    });
+                }
             }
             
             // Eventos de aumento y disminución de sesiones
-            decreaseBtn.addEventListener('click', function() {
-                let count = parseInt(sessionsCount.value);
-                if (count > 1) {
-                    sessionsCount.value = count - 1;
-                    updateTotalPrice();
-                }
-            });
+            if (decreaseBtn) {
+                decreaseBtn.addEventListener('click', function() {
+                    let count = parseInt(sessionsCount.value);
+                    if (count > 1) {
+                        sessionsCount.value = count - 1;
+                        updateTotalPrice();
+                    }
+                });
+            }
             
-            increaseBtn.addEventListener('click', function() {
-                let count = parseInt(sessionsCount.value);
-                if (count < 12) {
-                    sessionsCount.value = count + 1;
-                    updateTotalPrice();
-                }
-            });
+            if (increaseBtn) {
+                increaseBtn.addEventListener('click', function() {
+                    let count = parseInt(sessionsCount.value);
+                    if (count < 12) {
+                        sessionsCount.value = count + 1;
+                        updateTotalPrice();
+                    }
+                });
+            }
             
             // Navegación entre pasos
-            gotoStep2Btn.addEventListener('click', function() {
-                step1.classList.remove('active');
-                step1.classList.add('completed');
-                step2.classList.add('active');
-                step1Content.classList.add('hidden');
-                step2Content.classList.remove('hidden');
-                updateTotalPrice();
-            });
+            if (gotoStep2Btn) {
+                gotoStep2Btn.addEventListener('click', function() {
+                    step1.classList.remove('active');
+                    step1.classList.add('completed');
+                    step2.classList.add('active');
+                    step1Content.classList.add('hidden');
+                    step2Content.classList.remove('hidden');
+                    updateProgress(2);
+                    updateTotalPrice();
+                });
+            }
             
-            backToStep1Btn.addEventListener('click', function() {
-                step2.classList.remove('active');
-                step1.classList.remove('completed');
-                step1.classList.add('active');
-                step2Content.classList.add('hidden');
-                step1Content.classList.remove('hidden');
-            });
+            if (backToStep1Btn) {
+                backToStep1Btn.addEventListener('click', function() {
+                    step2.classList.remove('active');
+                    step1.classList.remove('completed');
+                    step1.classList.add('active');
+                    step2Content.classList.add('hidden');
+                    step1Content.classList.remove('hidden');
+                    updateProgress(1);
+                });
+            }
             
-            gotoStep3Btn.addEventListener('click', function() {
-                // Aquí podría ir validación del formulario
-                step2.classList.remove('active');
-                step2.classList.add('completed');
-                step3.classList.add('active');
-                step2Content.classList.add('hidden');
-                step3Content.classList.remove('hidden');
-                
-                // Generar número de referencia aleatorio
-                const refNumber = 'FC-2023-' + Math.floor(10000 + Math.random() * 90000);
-                document.getElementById('reference-number').textContent = refNumber;
-            });
+            if (gotoStep3Btn) {
+                gotoStep3Btn.addEventListener('click', function() {
+                    // Aquí podría ir validación del formulario
+                    step2.classList.remove('active');
+                    step2.classList.add('completed');
+                    step3.classList.add('active');
+                    step2Content.classList.add('hidden');
+                    step3Content.classList.remove('hidden');
+                    updateProgress(3);
+                    
+                    // Generar número de referencia aleatorio
+                    const refNumber = 'FC-2023-' + Math.floor(10000 + Math.random() * 90000);
+                    document.getElementById('reference-number').textContent = refNumber;
+                });
+            }
             
             // Cambio entre métodos de pago
             const paymentMethods = document.querySelectorAll('.payment-method');
             const creditCardForm = document.getElementById('credit-card-form');
             const mercadoPagoForm = document.getElementById('mercado-pago-form');
             
-            paymentMethods.forEach(method => {
-                method.addEventListener('click', function() {
-                    paymentMethods.forEach(m => m.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    const methodType = this.getAttribute('data-method');
-                    if (methodType === 'credit-card') {
-                        creditCardForm.classList.remove('hidden');
-                        mercadoPagoForm.classList.add('hidden');
-                    } else {
-                        creditCardForm.classList.add('hidden');
-                        mercadoPagoForm.classList.remove('hidden');
-                    }
+            if (paymentMethods && paymentMethods.length > 0) {
+                paymentMethods.forEach(method => {
+                    method.addEventListener('click', function() {
+                        paymentMethods.forEach(m => m.classList.remove('active'));
+                        this.classList.add('active');
+                        
+                        const methodType = this.getAttribute('data-method');
+                        if (methodType === 'credit-card' && creditCardForm && mercadoPagoForm) {
+                            creditCardForm.classList.remove('hidden');
+                            mercadoPagoForm.classList.add('hidden');
+                        } else if (methodType === 'mercado-pago' && creditCardForm && mercadoPagoForm) {
+                            creditCardForm.classList.add('hidden');
+                            mercadoPagoForm.classList.remove('hidden');
+                        }
+                    });
                 });
-            });
+            }
             
             // Formato para número de tarjeta
             const cardNumber = document.getElementById('card-number');
-            cardNumber.addEventListener('input', function(e) {
-                let value = e.target.value.replace(/\D/g, '');
-                let formattedValue = '';
-                
-                for (let i = 0; i < value.length && i < 16; i++) {
-                    if (i > 0 && i % 4 === 0) {
-                        formattedValue += ' ';
+            if (cardNumber) {
+                cardNumber.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\D/g, '');
+                    let formattedValue = '';
+                    
+                    for (let i = 0; i < value.length && i < 16; i++) {
+                        if (i > 0 && i % 4 === 0) {
+                            formattedValue += ' ';
+                        }
+                        formattedValue += value[i];
                     }
-                    formattedValue += value[i];
-                }
-                
-                e.target.value = formattedValue;
-            });
+                    
+                    e.target.value = formattedValue;
+                });
+            }
             
             // Formato para fecha de vencimiento
             const cardExpiry = document.getElementById('card-expiry');
-            cardExpiry.addEventListener('input', function(e) {
-                let value = e.target.value.replace(/\D/g, '');
-                let formattedValue = '';
-                
-                if (value.length > 0) {
-                    formattedValue = value.slice(0, 2);
-                    if (value.length > 2) {
-                        formattedValue += '/' + value.slice(2, 4);
+            if (cardExpiry) {
+                cardExpiry.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\D/g, '');
+                    let formattedValue = '';
+                    
+                    if (value.length > 0) {
+                        formattedValue = value.slice(0, 2);
+                        if (value.length > 2) {
+                            formattedValue += '/' + value.slice(2, 4);
+                        }
                     }
-                }
-                
-                e.target.value = formattedValue;
-            });
+                    
+                    e.target.value = formattedValue;
+                });
+            }
             
             // Inicializar
             updateTotalPrice();
+            updateProgress(1);
         });
     </script>
 </body>
